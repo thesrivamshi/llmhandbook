@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import DiagramCard from "../components/DiagramCard";
 import TimerPill from "../components/TimerPill";
+import NotesPanel from "../components/NotesPanel";
+import { useAnnotations, toggleBookmark, addHighlight, removeHighlight } from "../annotations";
 import {
   TOTAL_PAGES,
   cleanTextForPage,
@@ -54,22 +56,78 @@ function reflow(text: string): string[] {
   return paras;
 }
 
+const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+// Wrap any saved highlight phrases (longest first) in clickable <mark>s.
+function renderHighlighted(text: string, phrases: string[], onRemove: (p: string) => void): React.ReactNode {
+  if (!phrases.length) return text;
+  const sorted = [...phrases].sort((a, b) => b.length - a.length);
+  const re = new RegExp(`(${sorted.map(escRe).join("|")})`, "g");
+  return text.split(re).map((part, i) =>
+    phrases.includes(part) ? (
+      <mark
+        key={i}
+        onClick={() => onRemove(part)}
+        title="Click to remove this highlight"
+        style={{ background: "#FCE9B8", color: "#25313C", cursor: "pointer", borderRadius: 3, padding: "0 1px" }}
+      >
+        {part}
+      </mark>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    ),
+  );
+}
+
 // Render the verbatim clean text as paragraphs, splicing the page's figure
-// image(s) in after the first paragraph so nothing is lost.
+// image(s) in after the first paragraph so nothing is lost. Select text to
+// highlight it (saved per page); click a highlight to remove it.
 const CleanText: React.FC<{ page: number; accent: string }> = ({ page, accent }) => {
   const text = cleanTextForPage(page);
   const figs = figuresForPage(page);
   const paras = reflow(text);
+  const ann = useAnnotations();
+  const phrases = ann.highlights[page] ?? [];
+  const [sel, setSel] = React.useState<{ x: number; y: number; text: string } | null>(null);
+
+  const onMouseUp = () => {
+    const s = window.getSelection();
+    const t = s?.toString().trim() ?? "";
+    if (t.length >= 2 && t.length <= 300 && s && s.rangeCount > 0) {
+      const r = s.getRangeAt(0).getBoundingClientRect();
+      setSel({ x: r.left + r.width / 2, y: r.top, text: t });
+    } else {
+      setSel(null);
+    }
+  };
 
   if (paras.length === 0) {
     return <p className="text-faint italic">This page has no extracted text (blank or divider page). Use the Original view.</p>;
   }
 
   return (
-    <div className="font-body text-ink leading-[1.7] text-[15px] max-w-[68ch] space-y-3.5">
+    <div
+      className="font-body text-ink leading-[1.7] text-[15px] max-w-[68ch] space-y-3.5"
+      onMouseUp={onMouseUp}
+      onMouseDown={() => setSel(null)}
+    >
+      {sel && (
+        <button
+          onMouseDown={(e) => {
+            e.preventDefault();
+            addHighlight(page, sel.text);
+            window.getSelection()?.removeAllRanges();
+            setSel(null);
+          }}
+          style={{ position: "fixed", left: sel.x, top: sel.y - 42, transform: "translateX(-50%)", zIndex: 60 }}
+          className="rounded-lg bg-ink text-white text-[12px] font-body px-3 py-1.5 shadow-card hover:opacity-90"
+        >
+          Highlight
+        </button>
+      )}
       {paras.map((p, i) => (
         <React.Fragment key={i}>
-          <p>{p}</p>
+          <p>{renderHighlighted(p, phrases, (ph) => removeHighlight(page, ph))}</p>
           {i === 0 &&
             figs.map((f) => (
               <figure key={f.id} className="my-4 rounded-xl border border-border bg-paper/60 p-2">
@@ -129,6 +187,9 @@ export default function Read() {
   const section = sectionForPage(page);
   const accent = accentForPage(page);
   const d = diagramForPage(page);
+  const ann = useAnnotations();
+  const bookmarked = ann.bookmarks.includes(page);
+  const [bmOpen, setBmOpen] = React.useState(false);
 
   const go = React.useCallback(
     (p: number) => {
@@ -180,6 +241,51 @@ export default function Read() {
             >
               →
             </button>
+          </div>
+
+          {/* bookmark this page (+ jump to any bookmark) */}
+          <div className="relative flex items-center">
+            <button
+              onClick={() => toggleBookmark(page)}
+              className="rounded-lg border border-border px-2 py-1 text-sm leading-none hover:bg-surface"
+              style={{ color: bookmarked ? accent : "#97A0A8" }}
+              title={bookmarked ? "Remove bookmark" : "Bookmark this page"}
+              aria-pressed={bookmarked}
+            >
+              {bookmarked ? "★" : "☆"}
+            </button>
+            {ann.bookmarks.length > 0 && (
+              <button
+                onClick={() => setBmOpen((o) => !o)}
+                className="ml-0.5 rounded-lg border border-border px-1.5 py-1 text-[11px] text-ink2 hover:bg-surface"
+                title="Your bookmarks"
+                aria-expanded={bmOpen}
+              >
+                {ann.bookmarks.length} ▾
+              </button>
+            )}
+            {bmOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setBmOpen(false)} aria-hidden />
+                <div className="absolute left-0 top-full mt-1.5 z-50 w-64 max-h-80 overflow-y-auto rounded-xl border border-border bg-surface shadow-card p-1.5 font-body">
+                  {ann.bookmarks.map((bp) => (
+                    <button
+                      key={bp}
+                      onClick={() => {
+                        setBmOpen(false);
+                        go(bp);
+                      }}
+                      className="w-full text-left rounded-lg px-2 py-1.5 hover:bg-paper flex items-baseline gap-2"
+                    >
+                      <span className="font-mono text-[10.5px] shrink-0" style={{ color: accentForPage(bp) }}>
+                        p.{bp}
+                      </span>
+                      <span className="text-[12.5px] text-ink truncate">{diagramForPage(bp)?.title ?? sectionForPage(bp)?.title ?? "Page"}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <div className="text-[13px] text-ink2 truncate min-w-0 flex-1">
@@ -272,15 +378,15 @@ export default function Read() {
           )}
         </section>
 
-        {/* RIGHT — the diagram */}
+        {/* RIGHT — the diagram + your notes */}
         <section
-          className={`${mobilePane === "diagram" ? "block" : "hidden"} lg:block lg:overflow-y-auto px-4 sm:px-6 py-5 bg-paper/40`}
-          aria-label="Diagram"
+          className={`${mobilePane === "diagram" ? "flex" : "hidden"} lg:flex flex-col lg:overflow-y-auto px-4 sm:px-6 py-5 bg-paper/40`}
+          aria-label="Diagram and notes"
         >
           {d ? (
             <DiagramCard d={d} />
           ) : (
-            <div className="h-full min-h-[260px] flex flex-col items-center justify-center text-center rounded-card border border-dashed border-border bg-surface/60 px-6 py-12">
+            <div className="min-h-[220px] flex flex-col items-center justify-center text-center rounded-card border border-dashed border-border bg-surface/60 px-6 py-10">
               <div
                 className="h-10 w-10 rounded-full mb-3 flex items-center justify-center font-mono text-sm"
                 style={{ background: `${accent}1A`, color: accent }}
@@ -292,6 +398,7 @@ export default function Read() {
               <p className="font-body text-xs text-faint mt-3">The full page is on the left — nothing is missing.</p>
             </div>
           )}
+          <NotesPanel page={page} accent={accent} />
         </section>
       </div>
     </Layout>
