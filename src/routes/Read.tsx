@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import DiagramCard from "../components/DiagramCard";
+import TimerPill from "../components/TimerPill";
 import {
   TOTAL_PAGES,
   cleanTextForPage,
@@ -205,8 +206,9 @@ export default function Read() {
             </button>
           </div>
 
-          {/* distraction-free reading: auto-hide sidebar + browser fullscreen */}
+          {/* distraction-free reading: auto-hide sidebar + browser fullscreen + a tiny timer */}
           <div className="flex items-center gap-1.5">
+            <TimerPill accent={accent} />
             <button
               onClick={() => setFocus((f) => !f)}
               className={`hidden lg:inline-block px-3 py-1 text-[12.5px] rounded-lg border transition-colors ${
