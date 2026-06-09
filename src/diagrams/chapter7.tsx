@@ -589,4 +589,35 @@ export const CHAPTER7: PageDiagram[] = [
       </Frame>
     ),
   },
+  /* p316 — chapter summary / recap */
+  {
+    page: 316, chapter: 7, stage: "training", accent: T, archetype: "list-cluster",
+    section: "Summary",
+    term: "CHAPTER RECAP", title: "How we evaluated the model",
+    caption:
+      "Recap: custom evaluation rested on two techniques (multiple-choice QA + LLM-as-a-judge); RAG systems used two frameworks (Ragas vs ARES — synthetic data in common, context-metrics vs trained classifiers apart); and TwinLlama-3.1-8B was judged on relevance, coherence, and conciseness.",
+    diagram: (
+      <Frame w={720} h={300}>
+        <ModelGlyph x={300} y={120} w={120} h={110} accent={T} />
+        <Label x={360} y={245} weight={700}>TwinLlama eval</Label>
+        <Label x={150} y={22} size={11} weight={700} color={T}>TECHNIQUES</Label>
+        {["multiple-choice QA", "LLM-as-a-judge"].map((t, i) => (
+          <g key={t}>
+            <Pill x={30} y={45 + i * 50} text={t} accent={T} w={230} />
+            <line x1={300} y1={175} x2={260} y2={60 + i * 50} stroke="#ECE8DF" strokeWidth={1.4} />
+          </g>
+        ))}
+        <Label x={585} y={22} size={11} weight={700} color={T}>RAG FRAMEWORKS</Label>
+        {["Ragas", "ARES"].map((t, i) => (
+          <g key={t}>
+            <Pill x={500} y={45 + i * 50} text={t} accent={T} w={210} />
+            <line x1={420} y1={175} x2={500} y2={60 + i * 50} stroke="#ECE8DF" strokeWidth={1.4} />
+          </g>
+        ))}
+        {["relevance", "coherence", "conciseness"].map((t, i) => (
+          <Pill key={t} x={120 + i * 165} y={262} text={t} accent={T} w={150} />
+        ))}
+      </Frame>
+    ),
+  },
 ];

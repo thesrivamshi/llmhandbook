@@ -4,7 +4,7 @@
 // Stage = Feature / Data (green). Figures 3.1–3.7 are redrawn as schematics:
 // 3.2 (sources→crawlers→categories→warehouse) and 3.4 (the dispatcher) are the
 // two architecture figures; the rest are dashboard/UI shots redrawn as meaning.
-// pp.125–127 are References (non-content) and are skipped.
+// p125 is the chapter summary; pp.126–127 are References (non-content) and skipped.
 import React from "react";
 import {
   Canvas,
@@ -1017,6 +1017,31 @@ export const CHAPTER3: PageDiagram[] = [
         <LabelBox x={320} y={100} w={380} h={44} text="Substack / blog → CustomArticleCrawler (no Selenium)" accent={G} />
         <Pill x={320} y={160} text="poe run-import-data-warehouse-from-json" accent={G} w={380} />
         <Arrow x1={210} y1={90} x2={298} y2={120} accent={G} animated={false} />
+      </Frame>
+    ),
+  },
+  /* p125 — chapter summary / recap */
+  {
+    page: 125, chapter: 3, stage: "feature", accent: G, archetype: "list-cluster",
+    section: "Summary",
+    term: "CHAPTER RECAP", title: "What the data collection pipeline became",
+    caption:
+      "Recap: a custom ETL — orchestrated by ZenML, crawling three ways (subprocess git clone, LangChain, Selenium), through a dispatcher into a hand-built ODM — fills the MongoDB warehouse. The backed-up import lands 88 articles and 3 users.",
+    diagram: (
+      <Frame w={720} h={300}>
+        <BrandNode x={285} y={130} name="MongoDB" sub="88 articles · 3 users" w={180} />
+        {[
+          ["ETL: extract → transform → load", 40, 30],
+          ["ZenML orchestration", 470, 30],
+          ["3 crawl techniques", 40, 240],
+          ["dispatcher routes by domain", 250, 250],
+          ["custom ODM (Pydantic)", 480, 240],
+        ].map(([t, x, y], i) => (
+          <g key={i}>
+            <line x1={375} y1={155} x2={(x as number) + 80} y2={(y as number) + 15} stroke="#ECE8DF" strokeWidth={1.4} />
+            <Pill x={x as number} y={y as number} text={t as string} accent={G} />
+          </g>
+        ))}
       </Frame>
     ),
   },

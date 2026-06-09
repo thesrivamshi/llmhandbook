@@ -780,15 +780,14 @@ export const CHAPTER4: PageDiagram[] = [
             {i < 1 && <Arrow x1={430} y1={154} x2={448} y2={154} accent={G} animated={false} />}
           </g>
         ))}
-        <VectorDBGlyph x={580} y={110} w={100} h={100} accent={G} />
-        <Label x={630} y={222} size={11} weight={600}>Qdrant · RAG</Label>
+        <BrandNode x={560} y={125} name="Qdrant" sub="vector DB · RAG" w={180} />
         <Arrow x1={170} y1={145} x2={198} y2={145} accent={G} />
         <Arrow x1={300} y1={140} x2={328} y2={70} accent={G} animated={false} />
         <Arrow x1={300} y1={150} x2={328} y2={154} accent={G} />
-        <Arrow x1={550} y1={154} x2={578} y2={150} accent={G} />
+        <Arrow x1={550} y1={154} x2={558} y2={150} accent={G} />
         <PipelineGlyph x={540} y={240} w={180} h={50} accent={G} />
         <Label x={630} y={265} size={11} weight={600}>inference → answer</Label>
-        <Arrow x1={630} y1={210} x2={630} y2={238} accent={G} animated={false} />
+        <Arrow x1={630} y1={178} x2={630} y2={238} accent={G} animated={false} />
       </Frame>
     ),
   },
@@ -891,8 +890,10 @@ export const CHAPTER4: PageDiagram[] = [
         <Label x={540} y={20} size={10.5} color="#5E6B76">streaming</Label>
         <Label x={690} y={90} anchor="end" size={10.5} color="#5E6B76">small data</Label>
         <Label x={690} y={200} anchor="end" size={10.5} color="#5E6B76">big data</Label>
-        <Boundary x={90} y={55} w={230} h={70} title="LLM Twin" accent={G} />
-        <Pill x={105} y={78} text="Python · LangChain · SBERT" accent={G} w={200} />
+        <Boundary x={90} y={52} w={235} h={86} title="LLM Twin" accent={G} />
+        <BrandNode x={102} y={70} name="Python" w={100} />
+        <BrandNode x={208} y={70} name="LangChain" w={110} />
+        <Label x={207} y={128} size={10} color="#5E6B76">+ SBERT · Unstructured</Label>
         <BrandNode x={420} y={60} name="Bytewax" w={150} />
         <BrandNode x={420} y={170} name="Apache Flink" w={170} />
         <BrandNode x={120} y={170} name="Snowflake" sub="big batch" w={170} />

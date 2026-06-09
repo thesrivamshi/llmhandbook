@@ -1174,4 +1174,29 @@ export const CHAPTER11: PageDiagram[] = [
       </Frame>
     ),
   },
+  /* p488 — chapter / book wrap-up */
+  {
+    page: 488, chapter: 11, stage: "operations", accent: O, archetype: "pipeline-flow",
+    section: "Summary",
+    term: "END TO END", title: "The whole LLM Twin, one framework",
+    caption:
+      "Wrap-up: monitoring (Opik by Comet) + alerting (ZenML) complete the MLOps/LLMOps layer. The full arc — data collection → fine-tuning → deploy → RAG service — is one reusable framework: swap the data and tweak the code to get a new application.",
+    diagram: (
+      <Frame w={740} h={210}>
+        {[
+          ["collect", 20],
+          ["fine-tune", 200],
+          ["deploy", 380],
+          ["RAG serve", 540],
+        ].map(([t, x], i) => (
+          <g key={i}>
+            <PipelineGlyph x={x as number} y={50} w={150} h={70} accent={O} />
+            <Label x={(x as number) + 75} y={88} weight={700}>{t as string}</Label>
+            {i < 3 && <Arrow x1={(x as number) + 150} y1={85} x2={(x as number) + 200} y2={85} accent={O} animated={i === 0} />}
+          </g>
+        ))}
+        <Label x={370} y={165} size={11.5} weight={600} color={O}>swap the data + tweak code → a new LLM application</Label>
+      </Frame>
+    ),
+  },
 ];

@@ -50,6 +50,25 @@ Source book: *The LLM Engineer's Handbook* (Labonne & Iusztin, Packt 2024), 523 
     mobile; type-check clean. Self-critique fix: lowered pale-guard threshold so LangChain's label
     reads clearly.
 
+## Audit fixes — Phase 1 (diagram correctness) ✅ (in progress)
+
+- **Grey-box / tool-as-text triage.** A line-level scan found **19** cases (the earlier "~32" was a
+  looser heuristic). Most are legitimate **prose** ("tested on Python 3.11.8", "spun up via Docker",
+  "alternatives: Scrapy · Crawl4AI", "GPT-4o returns…") and are left per the rule. **3 genuine
+  node-as-text cases fixed:**
+  - p158 (Ch4): Qdrant was a generic `VectorDBGlyph` + text label → now a `BrandNode` (matches Ch1).
+  - p163 (Ch4): the LLM-Twin quadrant pill "Python · LangChain · SBERT" → Python + LangChain
+    `BrandNode`s (+ "SBERT · Unstructured" sub), matching the other quadrants' logos.
+  - p341 (Ch8): GPTQ / EXL2 `LabelBox`es → `BrandNode` brand pills (alongside ExLlamaV2).
+- **Missing content pages authored** (were skipped as if non-content): **p125** (Ch3 summary recap),
+  **p316** (Ch7 eval recap), **p380** (Ch9 Superlinked), **p488** (Ch11 end-to-end wrap). **p344 left
+  skipped** — one bridging sentence + a References list (references-dominated). Coverage is now
+  453 diagrams.
+- **Visual sweep (representative, NOT exhaustive).** Eyeballed ~17 pages spanning all 12 chapters
+  (p30/41/42/61/125/158/163/242/278/316/341/380/398/446/491/494/499/500). Shape language is
+  consistent, ModelGlyph vs VectorDBGlyph stay distinct, named tools use BrandNode, redraws match
+  the figures, no overlaps. Caveat: all 449→453 were not individually re-reviewed this pass.
+
 ## Split-view reader (headline feature) ✅
 
 - **Page images** — `node scripts/render-pages.mjs` rendered all **523** pages to

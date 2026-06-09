@@ -547,9 +547,9 @@ export const CHAPTER8: PageDiagram[] = [
       "GPTQ and EXL2 are GPU-dedicated (faster than llama.cpp), based on the GPTQ algorithm. GPTQ is 4-bit only; EXL2 mixes precisions (2–8 bits per weight), even per layer — running a 70B model on one 24 GB GPU at 2.55-bit. Both run on ExLlamaV2.",
     diagram: (
       <Frame w={720} h={210}>
-        <LabelBox x={40} y={70} w={250} h={70} text="GPTQ" sub="4-bit only" accent={I} />
+        <BrandNode x={40} y={80} name="GPTQ" sub="4-bit only" w={250} />
         <Label x={360} y={105} size={16} weight={700} color="#97A0A8">vs</Label>
-        <LabelBox x={420} y={70} w={260} h={70} text="EXL2" sub="mixed 2–8 bit / weight" accent={I} strong />
+        <BrandNode x={420} y={80} name="EXL2" sub="mixed 2–8 bit / weight" w={260} />
         <BrandNode x={250} y={160} name="ExLlamaV2" sub="runs both" w={210} />
       </Frame>
     ),

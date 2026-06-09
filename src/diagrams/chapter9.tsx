@@ -779,4 +779,26 @@ export const CHAPTER9: PageDiagram[] = [
       </Frame>
     ),
   },
+  /* p380 — Superlinked as an end-to-end vector tool + iterate-fast philosophy */
+  {
+    page: 380, chapter: 9, stage: "inference", accent: I, archetype: "pipeline-flow",
+    section: "Bringing everything together into the RAG inference pipeline",
+    term: "SUPERLINKED", title: "One Python tool, ingest → query → REST",
+    caption:
+      "Superlinked is a Python tool for vector use cases (RAG, recommenders, semantic search): ingest data into a vector DB, write complex queries on top, and deploy as a RESTful API. It fits the iterate-fast ethos — ship a working end-to-end solution, then optimize.",
+    diagram: (
+      <Frame w={740} h={230}>
+        <BrandNode x={30} y={95} name="Superlinked" sub="Python · vector compute" w={200} />
+        {["ingest → vector DB", "complex queries", "deploy as REST API"].map((t, i) => (
+          <g key={t}>
+            <LabelBox x={270 + (i % 3) * 0} y={40 + i * 56} w={250} h={44} text={t} accent={I} />
+            <Arrow x1={232} y1={120} x2={268} y2={62 + i * 56} accent={I} animated={i === 0} />
+          </g>
+        ))}
+        <Label x={620} y={120} size={11} color="#5E6B76" weight={600}>build end-to-end</Label>
+        <Label x={620} y={138} size={11} color="#5E6B76">first, then iterate</Label>
+        <Arrow x1={525} y1={62} x2={555} y2={115} accent={I} animated={false} />
+      </Frame>
+    ),
+  },
 ];
