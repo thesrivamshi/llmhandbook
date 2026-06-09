@@ -7,6 +7,8 @@ import Page from "./routes/Page";
 import Read from "./routes/Read";
 import Search from "./routes/Search";
 import MapView from "./routes/Map";
+import Tasks from "./routes/Tasks";
+import Quiz from "./routes/Quiz";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -17,6 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/read/:page" element={<Read />} />
         <Route path="/search" element={<Search />} />
         <Route path="/map" element={<MapView />} />
+        <Route path="/build" element={<Tasks />} />
+        <Route path="/quiz" element={<Quiz />} />
         <Route path="/chapter/:n" element={<Chapter />} />
         <Route path="/page/:n" element={<Page />} />
         <Route path="/legend" element={<Legend />} />

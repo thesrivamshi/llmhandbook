@@ -1,0 +1,98 @@
+[
+  {
+    "phase": "1 · Environment & tooling",
+    "chapter": 2,
+    "page": 54,
+    "items": [
+      { "id": "t-env-pyenv", "label": "Install pyenv + Python 3.11.8, clone the repo, set the local version" },
+      { "id": "t-env-poetry", "label": "Install dependencies with Poetry; add Poe the Poet as the task runner" },
+      { "id": "t-env-docker", "label": "Spin up local infra with Docker (ZenML + MongoDB + Qdrant)" },
+      { "id": "t-env-aws", "label": "Create an AWS account + IAM access key; configure the AWS CLI" },
+      { "id": "t-env-tokens", "label": "Fill .env with OpenAI + Hugging Face tokens" }
+    ]
+  },
+  {
+    "phase": "2 · Data collection ETL",
+    "chapter": 3,
+    "page": 84,
+    "items": [
+      { "id": "t-data-crawl", "label": "Build crawlers for Medium / Substack / LinkedIn / GitHub" },
+      { "id": "t-data-odm", "label": "Model documents with an ODM and store raw data in MongoDB" },
+      { "id": "t-data-pipeline", "label": "Wire the digital_data_etl ZenML pipeline + steps" }
+    ]
+  },
+  {
+    "phase": "3 · RAG feature pipeline",
+    "chapter": 4,
+    "page": 128,
+    "items": [
+      { "id": "t-rag-clean", "label": "Clean → chunk → embed documents" },
+      { "id": "t-rag-qdrant", "label": "Load embeddings into Qdrant (the vector DB)" },
+      { "id": "t-rag-retrieval", "label": "Implement advanced retrieval: query expansion, self-querying, reranking" }
+    ]
+  },
+  {
+    "phase": "4 · Supervised fine-tuning",
+    "chapter": 5,
+    "page": 206,
+    "items": [
+      { "id": "t-sft-dataset", "label": "Generate the instruction dataset from your cleaned data" },
+      { "id": "t-sft-train", "label": "Fine-tune with LoRA/QLoRA (Unsloth), tracking runs in Comet ML" },
+      { "id": "t-sft-push", "label": "Push the fine-tuned model to the Hugging Face registry" }
+    ]
+  },
+  {
+    "phase": "5 · Preference alignment",
+    "chapter": 6,
+    "page": 258,
+    "items": [
+      { "id": "t-dpo-data", "label": "Build a preference (chosen/rejected) dataset" },
+      { "id": "t-dpo-train", "label": "Align the model with DPO" }
+    ]
+  },
+  {
+    "phase": "6 · Evaluation",
+    "chapter": 7,
+    "page": 290,
+    "items": [
+      { "id": "t-eval-llm", "label": "Evaluate the fine-tuned LLM (general + task-specific)" },
+      { "id": "t-eval-rag", "label": "Evaluate the RAG pipeline (retrieval + answer quality)" }
+    ]
+  },
+  {
+    "phase": "7 · Inference optimization",
+    "chapter": 8,
+    "page": 318,
+    "items": [
+      { "id": "t-opt-quant", "label": "Quantize the model; pick a serving strategy" },
+      { "id": "t-opt-speed", "label": "Apply speed/throughput techniques (batching, KV cache, speculative decoding)" }
+    ]
+  },
+  {
+    "phase": "8 · RAG inference pipeline",
+    "chapter": 9,
+    "page": 346,
+    "items": [
+      { "id": "t-inf-retrieval", "label": "Build the retrieval + generation inference service" },
+      { "id": "t-inf-prompt", "label": "Assemble the RAG prompt and wire prompt monitoring (Opik)" }
+    ]
+  },
+  {
+    "phase": "9 · Deploy the inference pipeline",
+    "chapter": 10,
+    "page": 384,
+    "items": [
+      { "id": "t-dep-sagemaker", "label": "Deploy the model to a SageMaker endpoint" },
+      { "id": "t-dep-api", "label": "Expose a FastAPI REST API with autoscaling" }
+    ]
+  },
+  {
+    "phase": "10 · MLOps & LLMOps",
+    "chapter": 11,
+    "page": 430,
+    "items": [
+      { "id": "t-ops-cicd", "label": "Set up CI/CD/CT (GitHub Actions) for code, models and pipelines" },
+      { "id": "t-ops-monitor", "label": "Add monitoring, alerting and the model/artifact registries" }
+    ]
+  }
+]

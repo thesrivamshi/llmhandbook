@@ -1,0 +1,104 @@
+{
+  "1": [
+    {
+      "id": "q1-fti-why",
+      "q": "Why does the book argue every ML system can be reduced to feature, training, and inference pipelines? What does that buy you that a monolithic design doesn't?",
+      "a": "Splitting along FTI gives each pipeline its own stable interface (features land in a feature store, models in a registry, inference reads both), so teams can own pieces independently, scale them differently, and swap implementations without touching the others. A monolith couples feature creation, training, and serving into one unit you can't split, share, or scale.",
+      "page": 42,
+      "level": "core"
+    },
+    {
+      "id": "q1-monolith-fail",
+      "q": "What specific problem does a monolithic batch pipeline solve, and why is it still rejected here?",
+      "a": "It fixes training–serving skew (the same code computes features for both), but it can't be split across teams, can't stream, and forces retraining/serving to live together — so it doesn't scale organizationally or operationally.",
+      "page": 39,
+      "level": "core"
+    },
+    {
+      "id": "q1-realtime-state",
+      "q": "In a stateless real-time system, why is 'pass the whole client state in the request' a trap, and what does the feature store fix?",
+      "a": "It forces the client to transmit the entire state (history included) on every call just to compute features, which is fragile and heavy. A feature store lets inference look up precomputed features by ID, so the request only needs an identifier.",
+      "page": 40,
+      "level": "applied"
+    },
+    {
+      "id": "q1-feature-store-role",
+      "q": "What exactly connects the three FTI pipelines, and why those two stores specifically?",
+      "a": "Two shared stores: the feature store (feature pipeline writes, training + inference read) and the model registry (training writes, inference reads). They are the only contracts between pipelines, which is what keeps the interfaces stable as complexity grows.",
+      "page": 44,
+      "level": "core"
+    },
+    {
+      "id": "q1-mvp",
+      "q": "How does the book frame the MVP decision, and why frame it that way for this project?",
+      "a": "As maximizing product value relative to effort/resources given a tiny team — so you build the smallest first iteration that's genuinely valuable rather than the most complete one.",
+      "page": 36,
+      "level": "applied"
+    },
+    {
+      "id": "q1-model-agnostic",
+      "q": "Why insist the architecture be data-centric and model-agnostic, and what does that enable later in the build?",
+      "a": "Keeping data at the centre and the model swappable means any LLM exposing a fine-tuning interface can be dropped in, so you can change base models (OpenAI/Mistral/Llama) without re-architecting — important because later chapters fine-tune and align open models.",
+      "page": 35,
+      "level": "core"
+    },
+    {
+      "id": "q1-scaling",
+      "q": "Each FTI pipeline scales differently. How, and why does the split make that possible?",
+      "a": "Data/feature pipelines scale horizontally on CPU/RAM, training scales vertically with more GPUs, and inference scales horizontally with request load. Because the pipelines are decoupled, each can scale on its own axis instead of scaling the whole monolith.",
+      "page": 52,
+      "level": "applied"
+    }
+  ],
+  "2": [
+    {
+      "id": "q2-poetry-lock",
+      "q": "Why does the book prefer Poetry's lock file over a plain requirements.txt, and what failure does it prevent?",
+      "a": "The lock file pins exact versions of dependencies AND sub-dependencies, so every install is identical — preventing 'works on my machine' drift that loose version ranges allow.",
+      "page": 57,
+      "level": "core"
+    },
+    {
+      "id": "q2-zenml-stack",
+      "q": "What is ZenML's 'stack' abstraction and why is it the reason ZenML was chosen over Airflow/Prefect/Dagster?",
+      "a": "A stack lets the same pipeline code run against swappable infrastructure (e.g. SageMaker orchestrator, S3 storage, ECR registry) with no cloud-specific code, so you aren't vendor-locked — a feature the other orchestrators don't offer.",
+      "page": 61,
+      "level": "core"
+    },
+    {
+      "id": "q2-artifact-vs-metadata",
+      "q": "Distinguish a ZenML artifact from its metadata. Why attach metadata at all?",
+      "a": "An artifact is any versioned file a step produces (dataset, model, logs); metadata is precomputed info attached to it (size, categories, split ratios) so you can understand what's inside without downloading it — key for discovery and reproducibility.",
+      "page": 68,
+      "level": "applied"
+    },
+    {
+      "id": "q2-step-pipeline",
+      "q": "How do @step and @pipeline shape how you must write code, and why does that decoupling matter?",
+      "a": "A @pipeline is a high-level function that wires @step units; to integrate you write modular, single-purpose functions and keep app logic in a separate module. That lets you swap ZenML for another orchestrator (or reuse the logic in an API) by changing only the ZenML wrapper.",
+      "page": 66,
+      "level": "applied"
+    },
+    {
+      "id": "q2-hf-registry",
+      "q": "ZenML, Comet, and SageMaker all offer model registries. Why pick Hugging Face here?",
+      "a": "Purely for its ecosystem: easy shareability of the fine-tuned models and broad integration (e.g. Unsloth for fine-tuning, SageMaker for inference). You normally pick the registry that integrates best with your tooling.",
+      "page": 60,
+      "level": "core"
+    },
+    {
+      "id": "q2-sagemaker-vs-bedrock",
+      "q": "Why choose SageMaker over the simpler, cheaper Bedrock for this book?",
+      "a": "Bedrock is serverless with pre-trained models and simple per-call pricing but limited customization. SageMaker exposes the full train/deploy engineering surface (custom models, GPU clusters, endpoints) the book exists to teach — at the cost of pay-as-you-go infra you must autoscale/tear down.",
+      "page": 80,
+      "level": "core"
+    },
+    {
+      "id": "q2-prompt-logging",
+      "q": "Why can't you monitor LLM prompts with standard logging tools, and what does Opik provide instead?",
+      "a": "Prompts form chained, unstructured traces where each call depends on prior ones, so flat text logs don't capture the structure. Opik groups these into trace dashboards built for debugging/monitoring LLM apps.",
+      "page": 75,
+      "level": "applied"
+    }
+  ]
+}

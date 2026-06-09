@@ -1,24 +1,39 @@
 import { useSyncExternalStore } from "react";
 
-// Personal annotations — bookmarks, per-page notes, and text highlights —
-// persisted to the browser's localStorage. No backend: instant, private, and
-// offline, but device/browser-local. Use exportJSON / importJSON to back up
-// or move between devices. (Cross-device sync would need a backend e.g. Supabase.)
+// Personal state — bookmarks, per-page notes, text highlights, project-task
+// checkmarks, and quiz self-ratings — persisted to the browser's localStorage.
+// No backend: instant, private, offline, but device/browser-local. Use
+// exportJSON / importJSON to back up or move between devices.
 
+export type HiStyle = "hl" | "ul"; // highlight (marker) or underline
+export interface Highlight {
+  t: string;
+  s: HiStyle;
+}
 export interface AnnotationData {
   bookmarks: number[];
   notes: Record<number, string>;
-  highlights: Record<number, string[]>;
+  highlights: Record<number, Highlight[]>;
+  tasksDone: string[];
+  quiz: Record<string, "known" | "revisit">;
 }
 
 const KEY = "vb-annotations";
+const EMPTY: AnnotationData = { bookmarks: [], notes: {}, highlights: {}, tasksDone: [], quiz: {} };
 
 function load(): AnnotationData {
   try {
     const raw = JSON.parse(localStorage.getItem(KEY) || "{}");
-    return { bookmarks: [], notes: {}, highlights: {}, ...raw };
+    const d: AnnotationData = { ...EMPTY, ...raw };
+    // Migrate old string[] highlights → {t,s}.
+    const hi: Record<number, Highlight[]> = {};
+    for (const [k, v] of Object.entries(d.highlights || {})) {
+      hi[Number(k)] = (v as unknown as (string | Highlight)[]).map((x) => (typeof x === "string" ? { t: x, s: "hl" } : x));
+    }
+    d.highlights = hi;
+    return d;
   } catch {
-    return { bookmarks: [], notes: {}, highlights: {} };
+    return { ...EMPTY };
   }
 }
 
@@ -33,29 +48,24 @@ function persist() {
   }
   subs.forEach((f) => f());
 }
-
 function subscribe(f: () => void) {
   subs.add(f);
   return () => subs.delete(f);
 }
 const snapshot = () => data;
 
-/** Reactive read of the whole annotation store. */
 export function useAnnotations(): AnnotationData {
   return useSyncExternalStore(subscribe, snapshot, snapshot);
 }
 
-export const isBookmarked = (page: number) => data.bookmarks.includes(page);
-
+/* ---- bookmarks ---- */
 export function toggleBookmark(page: number) {
   const has = data.bookmarks.includes(page);
-  data = {
-    ...data,
-    bookmarks: has ? data.bookmarks.filter((p) => p !== page) : [...data.bookmarks, page].sort((a, b) => a - b),
-  };
+  data = { ...data, bookmarks: has ? data.bookmarks.filter((p) => p !== page) : [...data.bookmarks, page].sort((a, b) => a - b) };
   persist();
 }
 
+/* ---- notes ---- */
 export function setNote(page: number, text: string) {
   const notes = { ...data.notes };
   if (text.trim()) notes[page] = text;
@@ -64,18 +74,18 @@ export function setNote(page: number, text: string) {
   persist();
 }
 
-export function addHighlight(page: number, phrase: string) {
-  const p = phrase.trim();
-  if (p.length < 2) return;
+/* ---- highlights / underlines ---- */
+export function addHighlight(page: number, phrase: string, style: HiStyle = "hl") {
+  const t = phrase.trim();
+  if (t.length < 2) return;
   const cur = data.highlights[page] || [];
-  if (cur.includes(p)) return;
-  data = { ...data, highlights: { ...data.highlights, [page]: [...cur, p] } };
+  const next = cur.filter((h) => h.t !== t); // replace style if same phrase
+  data = { ...data, highlights: { ...data.highlights, [page]: [...next, { t, s: style }] } };
   persist();
 }
-
 export function removeHighlight(page: number, phrase: string) {
   const cur = data.highlights[page] || [];
-  const next = cur.filter((p) => p !== phrase);
+  const next = cur.filter((h) => h.t !== phrase);
   const highlights = { ...data.highlights };
   if (next.length) highlights[page] = next;
   else delete highlights[page];
@@ -83,7 +93,20 @@ export function removeHighlight(page: number, phrase: string) {
   persist();
 }
 
-/** Download all annotations as a JSON backup. */
+/* ---- project tasks ---- */
+export function toggleTask(id: string) {
+  const has = data.tasksDone.includes(id);
+  data = { ...data, tasksDone: has ? data.tasksDone.filter((x) => x !== id) : [...data.tasksDone, id] };
+  persist();
+}
+
+/* ---- quiz self-rating ---- */
+export function setQuiz(id: string, val: "known" | "revisit") {
+  data = { ...data, quiz: { ...data.quiz, [id]: val } };
+  persist();
+}
+
+/* ---- backup ---- */
 export function exportJSON() {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -93,15 +116,15 @@ export function exportJSON() {
   a.click();
   URL.revokeObjectURL(url);
 }
-
-/** Merge an exported JSON backup into the current store. */
 export function importJSON(file: File): Promise<void> {
   return file.text().then((txt) => {
-    const incoming = JSON.parse(txt) as Partial<AnnotationData>;
+    const inc = JSON.parse(txt) as Partial<AnnotationData>;
     data = {
-      bookmarks: Array.from(new Set([...data.bookmarks, ...(incoming.bookmarks || [])])).sort((a, b) => a - b),
-      notes: { ...data.notes, ...(incoming.notes || {}) },
-      highlights: { ...data.highlights, ...(incoming.highlights || {}) },
+      bookmarks: Array.from(new Set([...data.bookmarks, ...(inc.bookmarks || [])])).sort((a, b) => a - b),
+      notes: { ...data.notes, ...(inc.notes || {}) },
+      highlights: { ...data.highlights, ...(inc.highlights || {}) },
+      tasksDone: Array.from(new Set([...data.tasksDone, ...(inc.tasksDone || [])])),
+      quiz: { ...data.quiz, ...(inc.quiz || {}) },
     };
     persist();
   });

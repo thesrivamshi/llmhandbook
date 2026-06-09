@@ -4,7 +4,8 @@ import Layout from "../components/Layout";
 import DiagramCard from "../components/DiagramCard";
 import TimerPill from "../components/TimerPill";
 import NotesPanel from "../components/NotesPanel";
-import { useAnnotations, toggleBookmark, addHighlight, removeHighlight } from "../annotations";
+import ConceptChips from "../components/ConceptChips";
+import { useAnnotations, toggleBookmark, addHighlight, removeHighlight, type Highlight } from "../annotations";
 import {
   TOTAL_PAGES,
   cleanTextForPage,
@@ -58,25 +59,25 @@ function reflow(text: string): string[] {
 
 const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-// Wrap any saved highlight phrases (longest first) in clickable <mark>s.
-function renderHighlighted(text: string, phrases: string[], onRemove: (p: string) => void): React.ReactNode {
-  if (!phrases.length) return text;
-  const sorted = [...phrases].sort((a, b) => b.length - a.length);
+// Wrap saved highlights/underlines (longest first) in clickable <mark>s.
+function renderHighlighted(text: string, highlights: Highlight[], onRemove: (p: string) => void): React.ReactNode {
+  if (!highlights.length) return text;
+  const styleOf = new Map(highlights.map((h) => [h.t, h.s]));
+  const sorted = highlights.map((h) => h.t).sort((a, b) => b.length - a.length);
   const re = new RegExp(`(${sorted.map(escRe).join("|")})`, "g");
-  return text.split(re).map((part, i) =>
-    phrases.includes(part) ? (
-      <mark
-        key={i}
-        onClick={() => onRemove(part)}
-        title="Click to remove this highlight"
-        style={{ background: "#FCE9B8", color: "#25313C", cursor: "pointer", borderRadius: 3, padding: "0 1px" }}
-      >
+  return text.split(re).map((part, i) => {
+    const s = styleOf.get(part);
+    if (!s) return <React.Fragment key={i}>{part}</React.Fragment>;
+    const style: React.CSSProperties =
+      s === "ul"
+        ? { textDecoration: "underline", textDecorationColor: "#EE9613", textDecorationThickness: 2, textUnderlineOffset: 3, cursor: "pointer" }
+        : { background: "#FCE9B8", color: "#25313C", borderRadius: 3, padding: "0 1px", cursor: "pointer" };
+    return (
+      <mark key={i} onClick={() => onRemove(part)} title="Click to remove" style={{ background: "transparent", color: "inherit", ...style }}>
         {part}
       </mark>
-    ) : (
-      <React.Fragment key={i}>{part}</React.Fragment>
-    ),
-  );
+    );
+  });
 }
 
 // Render the verbatim clean text as paragraphs, splicing the page's figure
@@ -87,8 +88,14 @@ const CleanText: React.FC<{ page: number; accent: string }> = ({ page, accent })
   const figs = figuresForPage(page);
   const paras = reflow(text);
   const ann = useAnnotations();
-  const phrases = ann.highlights[page] ?? [];
+  const phrases: Highlight[] = ann.highlights[page] ?? [];
   const [sel, setSel] = React.useState<{ x: number; y: number; text: string } | null>(null);
+  const mark = (style: "hl" | "ul") => (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (sel) addHighlight(page, sel.text, style);
+    window.getSelection()?.removeAllRanges();
+    setSel(null);
+  };
 
   const onMouseUp = () => {
     const s = window.getSelection();
@@ -112,18 +119,17 @@ const CleanText: React.FC<{ page: number; accent: string }> = ({ page, accent })
       onMouseDown={() => setSel(null)}
     >
       {sel && (
-        <button
-          onMouseDown={(e) => {
-            e.preventDefault();
-            addHighlight(page, sel.text);
-            window.getSelection()?.removeAllRanges();
-            setSel(null);
-          }}
-          style={{ position: "fixed", left: sel.x, top: sel.y - 42, transform: "translateX(-50%)", zIndex: 60 }}
-          className="rounded-lg bg-ink text-white text-[12px] font-body px-3 py-1.5 shadow-card hover:opacity-90"
+        <div
+          style={{ position: "fixed", left: sel.x, top: sel.y - 44, transform: "translateX(-50%)", zIndex: 60 }}
+          className="flex gap-1 rounded-lg bg-ink p-1 shadow-card"
         >
-          Highlight
-        </button>
+          <button onMouseDown={mark("hl")} className="rounded-md px-2.5 py-1 text-[12px] text-white hover:bg-white/15" title="Highlight">
+            ▮ Highlight
+          </button>
+          <button onMouseDown={mark("ul")} className="rounded-md px-2.5 py-1 text-[12px] text-white hover:bg-white/15" title="Underline">
+            <span style={{ textDecoration: "underline", textDecorationColor: "#EE9613", textDecorationThickness: 2 }}>U</span> Underline
+          </button>
+        </div>
       )}
       {paras.map((p, i) => (
         <React.Fragment key={i}>
@@ -156,6 +162,11 @@ export default function Read() {
   const [leftView, setLeftView] = React.useState<LeftView>("original");
   const [mobilePane, setMobilePane] = React.useState<MobilePane>("page");
   const [zoom, setZoom] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
+  React.useEffect(() => {
+    setImgError(false);
+    setZoom(false);
+  }, [page]);
   const [focus, setFocus] = React.useState<boolean>(() => {
     try {
       return localStorage.getItem("vb-focus") === "1";
@@ -348,33 +359,34 @@ export default function Read() {
           className={`${mobilePane === "page" ? "block" : "hidden"} lg:block lg:overflow-y-auto border-b lg:border-b-0 lg:border-r border-border px-4 sm:px-6 py-5`}
           aria-label={`Book page ${page}`}
         >
-          {leftView === "original" ? (
+          {leftView === "original" && !imgError ? (
             <div className="flex flex-col items-center">
               <img
+                key={page}
                 src={pageImage(page)}
                 alt={`Book page ${page} (original)`}
                 onClick={() => setZoom((z) => !z)}
                 className={`rounded-xl border border-border shadow-card bg-white cursor-zoom-in transition-all ${
                   zoom ? "max-w-none w-[140%] cursor-zoom-out" : "w-full max-w-[640px]"
                 }`}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                  (e.currentTarget.nextElementSibling as HTMLElement)?.classList.remove("hidden");
-                }}
+                onError={() => setImgError(true)}
               />
-              <div className="hidden mt-6 text-center text-ink2 font-body max-w-md">
-                <p className="font-semibold mb-1">Original page image not rendered yet.</p>
-                <p className="text-sm">
-                  Run <code className="font-mono text-[12px]">node scripts/render-pages.mjs</code> to generate it, or switch to{" "}
-                  <button className="underline" onClick={() => setLeftView("text")}>
-                    Clean text
-                  </button>
-                  .
-                </p>
-              </div>
             </div>
           ) : (
-            <CleanText page={page} accent={accent} />
+            <div>
+              {leftView === "original" && imgError && (
+                <div className="mb-3 flex items-center gap-2 rounded-lg border border-border bg-paper px-3 py-2 text-[12.5px] text-ink2">
+                  <span>The page image didn’t load — showing the full text instead.</span>
+                  <button
+                    onClick={() => setImgError(false)}
+                    className="ml-auto rounded-md border border-border px-2 py-0.5 hover:bg-surface"
+                  >
+                    Retry image
+                  </button>
+                </div>
+              )}
+              <CleanText page={page} accent={accent} />
+            </div>
           )}
         </section>
 
@@ -398,6 +410,7 @@ export default function Read() {
               <p className="font-body text-xs text-faint mt-3">The full page is on the left — nothing is missing.</p>
             </div>
           )}
+          <ConceptChips page={page} accent={accent} />
           <NotesPanel page={page} accent={accent} />
         </section>
       </div>
