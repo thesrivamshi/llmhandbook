@@ -166,6 +166,11 @@ export default function Read() {
   React.useEffect(() => {
     setImgError(false);
     setZoom(false);
+    try {
+      localStorage.setItem("vb-last-page", String(page));
+    } catch {
+      /* ignore */
+    }
   }, [page]);
   const [focus, setFocus] = React.useState<boolean>(() => {
     try {

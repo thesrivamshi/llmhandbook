@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import interviewData from "../data/interview.json";
 import { CHAPTERS, accentOf } from "../book";
-import { useAnnotations, setQuiz } from "../annotations";
+import { useAnnotations, setQuiz, resetQuiz } from "../annotations";
 
 interface Q {
   id: string;
@@ -85,11 +85,16 @@ const QCard: React.FC<{ q: Q; accent: string }> = ({ q, accent }) => {
 
 export default function Quiz() {
   const [sel, setSel] = React.useState<number | "test">(CHAPTER_NUMS[0] ?? "test");
+  const [revisitOnly, setRevisitOnly] = React.useState(false);
   const ann = useAnnotations();
 
-  const questions: Q[] = sel === "test" ? shuffle(Object.values(BANK).flat(), 7) : BANK[String(sel)] ?? [];
+  const allQuestions: Q[] = sel === "test" ? shuffle(Object.values(BANK).flat(), 7) : BANK[String(sel)] ?? [];
+  const questions = revisitOnly ? allQuestions.filter((q) => ann.quiz[q.id] === "revisit") : allQuestions;
   const accent = sel === "test" ? "#7B61E8" : accentOf(sel as number);
-  const known = questions.filter((q) => ann.quiz[q.id] === "known").length;
+  const known = allQuestions.filter((q) => ann.quiz[q.id] === "known").length;
+  const revisit = allQuestions.filter((q) => ann.quiz[q.id] === "revisit").length;
+  const rated = known + revisit;
+  const pct = allQuestions.length ? Math.round((known / allQuestions.length) * 100) : 0;
 
   return (
     <Layout>
@@ -120,19 +125,34 @@ export default function Quiz() {
           </button>
         </div>
 
-        <div className="flex items-center gap-3 mb-5 text-[12px] font-mono text-ink2">
-          <span>
-            {sel === "test" ? "Final test (all authored chapters)" : chapterTitle(sel as number)}
-          </span>
+        <div className="flex items-center gap-3 mb-3 flex-wrap text-[12px] font-mono text-ink2">
+          <span>{sel === "test" ? "Final test (all authored chapters)" : chapterTitle(sel as number)}</span>
           <span className="text-faint">·</span>
-          <span style={{ color: "#15A864" }}>
-            {known}/{questions.length} marked “got it”
-          </span>
+          <span style={{ color: "#15A864" }}>{known} got it</span>
+          <span style={{ color: "#EE9613" }}>{revisit} revisit</span>
+          <span className="text-faint">· {rated}/{allQuestions.length} rated</span>
+          {revisit > 0 && (
+            <button onClick={() => setRevisitOnly((v) => !v)} className={`px-2 py-0.5 rounded-md border ${revisitOnly ? "bg-paper font-semibold text-ink border-border" : "border-border hover:bg-paper/70"}`}>
+              {revisitOnly ? "show all" : "review revisit only"}
+            </button>
+          )}
+          {rated > 0 && (
+            <button onClick={() => resetQuiz(allQuestions.map((q) => q.id))} className="px-2 py-0.5 rounded-md border border-border hover:bg-paper/70" title="Clear ratings for this set">
+              reset
+            </button>
+          )}
+        </div>
+
+        {/* score bar */}
+        <div className="h-2 rounded-full bg-border/60 overflow-hidden mb-5">
+          <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: "#15A864" }} />
         </div>
 
         <div className="space-y-3.5">
-          {questions.length === 0 ? (
+          {allQuestions.length === 0 ? (
             <p className="text-ink2 font-body">No questions for this chapter yet — being authored.</p>
+          ) : questions.length === 0 ? (
+            <p className="text-ink2 font-body">Nothing marked “revisit” here. <button className="underline" onClick={() => setRevisitOnly(false)}>Show all</button>.</p>
           ) : (
             questions.map((q) => <QCard key={q.id} q={q} accent={accent} />)
           )}

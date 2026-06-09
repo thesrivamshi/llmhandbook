@@ -50,7 +50,24 @@ Source book: *The LLM Engineer's Handbook* (Labonne & Iusztin, Packt 2024), 523 
     mobile; type-check clean. Self-critique fix: lowered pale-guard threshold so LangChain's label
     reads clearly.
 
-## Audit fixes — Phase 1 (diagram correctness) ✅ (in progress)
+## Audit fixes — Phase 2 (reader features) ✅ (core)
+
+- **Full-text search** — `Search.tsx` now scans the full `pages.clean.json` text (snippet + highlight,
+  tagged "Book text"), the glossary (shown in a top block), plus the existing diagram/section index.
+  Any word in the book is now findable. (e.g. "PagedAttention" → glossary + diagrams + p327/p344 text.)
+- **Resume last page** — `Read.tsx` saves `vb-last-page` in localStorage; `/` and the catch-all now
+  resume there (default 30) via a `Resume` redirect in `main.tsx`.
+- **/glossary** — browsable, filterable list of all 73 terms + defs, each linking to its first focus page.
+- **/marks** — one place for all bookmarks / notes / highlights across the book, each linking back;
+  per-item remove; Export. Sidebar nav: Read · Search · Glossary · Marks · Build · Quiz · Map · Legend.
+- **Concept-chip coverage** — `concepts.ts` now matches glossary terms against each page's clean text
+  too (not just the caption). Zero-chip diagram pages dropped **108 → 27** of 453. Cross-link target
+  lists stay focused (diagram-metadata pages; text pages as fallback).
+- **Quiz scoring/review** — `Quiz.tsx` adds a score bar + "N got it / N revisit / rated" line, a
+  "review revisit only" filter, and a per-set "reset" (`resetQuiz` in annotations.ts).
+- Deferred (lower-priority 2f): ⌘K palette, multi-level image zoom/pan, printed page numbers, navigable Index.
+
+## Audit fixes — Phase 1 (diagram correctness) ✅
 
 - **Grey-box / tool-as-text triage.** A line-level scan found **19** cases (the earlier "~32" was a
   looser heuristic). Most are legitimate **prose** ("tested on Python 3.11.8", "spun up via Docker",

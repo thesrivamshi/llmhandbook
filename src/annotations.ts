@@ -105,6 +105,16 @@ export function setQuiz(id: string, val: "known" | "revisit") {
   data = { ...data, quiz: { ...data.quiz, [id]: val } };
   persist();
 }
+export function resetQuiz(ids?: string[]) {
+  if (!ids) {
+    data = { ...data, quiz: {} };
+  } else {
+    const q = { ...data.quiz };
+    for (const id of ids) delete q[id];
+    data = { ...data, quiz: q };
+  }
+  persist();
+}
 
 /* ---- backup ---- */
 export function exportJSON() {

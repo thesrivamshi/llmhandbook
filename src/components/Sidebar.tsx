@@ -111,9 +111,11 @@ const SidebarBody: React.FC = () => {
       <div className="flex items-center gap-2 mb-4 flex-wrap">
         {[
           ["/read/30", "Read"],
+          ["/search", "Search"],
+          ["/glossary", "Glossary"],
+          ["/marks", "Marks"],
           ["/build", "Build"],
           ["/quiz", "Quiz"],
-          ["/search", "Search"],
           ["/map", "Map"],
           ["/legend", "Legend"],
         ].map(([to, label]) => (
