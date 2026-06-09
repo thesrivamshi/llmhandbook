@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Cover",
+    "chapterNumber": null,
+    "startPage": 1,
+    "endPage": 2,
+    "pageCount": 2,
+    "headingCount": 0
+  },
+  {
+    "id": 2,
+    "title": "Copyright",
+    "chapterNumber": null,
+    "startPage": 3,
+    "endPage": 5,
+    "pageCount": 3,
+    "headingCount": 0
+  },
+  {
+    "id": 3,
+    "title": "Contributors",
+    "chapterNumber": null,
+    "startPage": 6,
+    "endPage": 9,
+    "pageCount": 4,
+    "headingCount": 0
+  },
+  {
+    "id": 4,
+    "title": "Table of Contents",
+    "chapterNumber": null,
+    "startPage": 10,
+    "endPage": 21,
+    "pageCount": 12,
+    "headingCount": 0
+  },
+  {
+    "id": 5,
+    "title": "Preface",
+    "chapterNumber": null,
+    "startPage": 22,
+    "endPage": 29,
+    "pageCount": 8,
+    "headingCount": 0
+  },
+  {
+    "id": 6,
+    "title": "Chapter 1: Understanding the LLM Twin Concept and Its Architecture",
+    "chapterNumber": 1,
+    "startPage": 30,
+    "endPage": 53,
+    "pageCount": 24,
+    "headingCount": 25
+  },
+  {
+    "id": 32,
+    "title": "Chapter 2: Tooling and Installation",
+    "chapterNumber": 2,
+    "startPage": 54,
+    "endPage": 83,
+    "pageCount": 30,
+    "headingCount": 20
+  },
+  {
+    "id": 53,
+    "title": "Chapter 3: Data Engineering",
+    "chapterNumber": 3,
+    "startPage": 84,
+    "endPage": 127,
+    "pageCount": 44,
+    "headingCount": 19
+  },
+  {
+    "id": 73,
+    "title": "Chapter 4: RAG Feature Pipeline",
+    "chapterNumber": 4,
+    "startPage": 128,
+    "endPage": 205,
+    "pageCount": 78,
+    "headingCount": 47
+  },
+  {
+    "id": 121,
+    "title": "Chapter 5: Supervised Fine-Tuning",
+    "chapterNumber": 5,
+    "startPage": 206,
+    "endPage": 257,
+    "pageCount": 52,
+    "headingCount": 31
+  },
+  {
+    "id": 153,
+    "title": "Chapter 6: Fine-Tuning with Preference Alignment",
+    "chapterNumber": 6,
+    "startPage": 258,
+    "endPage": 289,
+    "pageCount": 32,
+    "headingCount": 14
+  },
+  {
+    "id": 168,
+    "title": "Chapter 7: Evaluating LLMs",
+    "chapterNumber": 7,
+    "startPage": 290,
+    "endPage": 317,
+    "pageCount": 28,
+    "headingCount": 14
+  },
+  {
+    "id": 183,
+    "title": "Chapter 8: Inference Optimization",
+    "chapterNumber": 8,
+    "startPage": 318,
+    "endPage": 345,
+    "pageCount": 28,
+    "headingCount": 17
+  },
+  {
+    "id": 201,
+    "title": "Chapter 9: RAG Inference Pipeline",
+    "chapterNumber": 9,
+    "startPage": 346,
+    "endPage": 383,
+    "pageCount": 38,
+    "headingCount": 12
+  },
+  {
+    "id": 214,
+    "title": "Chapter 10: Inference Pipeline Deployment",
+    "chapterNumber": 10,
+    "startPage": 384,
+    "endPage": 429,
+    "pageCount": 46,
+    "headingCount": 27
+  },
+  {
+    "id": 242,
+    "title": "Chapter 11: MLOps and LLMOps",
+    "chapterNumber": 11,
+    "startPage": 430,
+    "endPage": 489,
+    "pageCount": 60,
+    "headingCount": 36
+  },
+  {
+    "id": 279,
+    "title": "Appendix: MLOps Principles",
+    "chapterNumber": null,
+    "startPage": 490,
+    "endPage": 503,
+    "pageCount": 14,
+    "headingCount": 16
+  },
+  {
+    "id": 296,
+    "title": "Packt Page",
+    "chapterNumber": null,
+    "startPage": 504,
+    "endPage": 505,
+    "pageCount": 2,
+    "headingCount": 0
+  },
+  {
+    "id": 297,
+    "title": "Other Books You May Enjoy",
+    "chapterNumber": null,
+    "startPage": 506,
+    "endPage": 509,
+    "pageCount": 4,
+    "headingCount": 0
+  },
+  {
+    "id": 298,
+    "title": "Index",
+    "chapterNumber": null,
+    "startPage": 510,
+    "endPage": 523,
+    "pageCount": 14,
+    "headingCount": 0
+  }
+]

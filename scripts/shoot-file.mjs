@@ -1,0 +1,14 @@
+import path from "node:path";
+import { chromium } from "playwright";
+const OUT = process.env.SHOT_OUT;
+const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 1320, height: 1000 }, deviceScaleFactor: 2 });
+const page = await ctx.newPage();
+const url = "file:///tmp/vb-single/index.html#/chapter/1";
+await page.goto(url, { waitUntil: "networkidle" });
+await page.waitForTimeout(1500);
+const txt = await page.evaluate(() => document.body.innerText.slice(0, 120));
+console.log("BODY_TEXT_START:", JSON.stringify(txt));
+await page.screenshot({ path: path.join(OUT, "single-file-test.png"), fullPage: false });
+console.log("screenshot written");
+await browser.close();

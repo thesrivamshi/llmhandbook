@@ -1,0 +1,2168 @@
+[
+  {
+    "id": 1,
+    "title": "Cover",
+    "depth": 0,
+    "startPage": 1,
+    "children": []
+  },
+  {
+    "id": 2,
+    "title": "Copyright",
+    "depth": 0,
+    "startPage": 3,
+    "children": []
+  },
+  {
+    "id": 3,
+    "title": "Contributors",
+    "depth": 0,
+    "startPage": 6,
+    "children": []
+  },
+  {
+    "id": 4,
+    "title": "Table of Contents",
+    "depth": 0,
+    "startPage": 10,
+    "children": []
+  },
+  {
+    "id": 5,
+    "title": "Preface",
+    "depth": 0,
+    "startPage": 22,
+    "children": []
+  },
+  {
+    "id": 6,
+    "title": "Chapter 1: Understanding the LLM Twin Concept and Its Architecture",
+    "depth": 0,
+    "startPage": 30,
+    "children": [
+      {
+        "id": 7,
+        "title": "Understanding the LLM twin concept",
+        "depth": 1,
+        "startPage": 31,
+        "children": [
+          {
+            "id": 8,
+            "title": "What is an LLM twin?",
+            "depth": 2,
+            "startPage": 31,
+            "children": []
+          },
+          {
+            "id": 9,
+            "title": "Why building an LLM twin matters",
+            "depth": 2,
+            "startPage": 32,
+            "children": []
+          },
+          {
+            "id": 10,
+            "title": "Why not use ChatGPT (or another similar chatbot)?",
+            "depth": 2,
+            "startPage": 34,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Planning the MVP of the LLM twin product",
+        "depth": 1,
+        "startPage": 35,
+        "children": [
+          {
+            "id": 12,
+            "title": "What is an MVP?",
+            "depth": 2,
+            "startPage": 35,
+            "children": []
+          },
+          {
+            "id": 13,
+            "title": "Defining the LLM twin MVP",
+            "depth": 2,
+            "startPage": 36,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Building ML systems with feature/training/inference pipelines",
+        "depth": 1,
+        "startPage": 37,
+        "children": [
+          {
+            "id": 15,
+            "title": "The problem with building ML systems",
+            "depth": 2,
+            "startPage": 37,
+            "children": []
+          },
+          {
+            "id": 16,
+            "title": "The issue with previous solutions",
+            "depth": 2,
+            "startPage": 39,
+            "children": []
+          },
+          {
+            "id": 17,
+            "title": "The solution – ML pipelines for ML systems",
+            "depth": 2,
+            "startPage": 42,
+            "children": [
+              {
+                "id": 18,
+                "title": "The feature pipeline",
+                "depth": 3,
+                "startPage": 43,
+                "children": []
+              },
+              {
+                "id": 19,
+                "title": "The training pipeline",
+                "depth": 3,
+                "startPage": 43,
+                "children": []
+              },
+              {
+                "id": 20,
+                "title": "The inference pipeline",
+                "depth": 3,
+                "startPage": 43,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 21,
+            "title": "Benefits of the FTI architecture",
+            "depth": 2,
+            "startPage": 44,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Designing the system architecture of the LLM twin",
+        "depth": 1,
+        "startPage": 45,
+        "children": [
+          {
+            "id": 23,
+            "title": "Listing the technical details of the LLM twin architecture",
+            "depth": 2,
+            "startPage": 45,
+            "children": []
+          },
+          {
+            "id": 24,
+            "title": "How to design the LLM twin architecture using the FTI pipeline design",
+            "depth": 2,
+            "startPage": 46,
+            "children": [
+              {
+                "id": 25,
+                "title": "Data collection pipeline",
+                "depth": 3,
+                "startPage": 48,
+                "children": []
+              },
+              {
+                "id": 26,
+                "title": "Feature pipeline",
+                "depth": 3,
+                "startPage": 48,
+                "children": []
+              },
+              {
+                "id": 27,
+                "title": "Training pipeline",
+                "depth": 3,
+                "startPage": 50,
+                "children": []
+              },
+              {
+                "id": 28,
+                "title": "Inference pipeline",
+                "depth": 3,
+                "startPage": 51,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 29,
+            "title": "Final thoughts on the FTI design and the LLM twin architecture",
+            "depth": 2,
+            "startPage": 51,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 52,
+        "children": []
+      },
+      {
+        "id": 31,
+        "title": "References",
+        "depth": 1,
+        "startPage": 52,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Chapter 2: Tooling and Installation",
+    "depth": 0,
+    "startPage": 54,
+    "children": [
+      {
+        "id": 33,
+        "title": "Python ecosystem and project installation",
+        "depth": 1,
+        "startPage": 55,
+        "children": [
+          {
+            "id": 34,
+            "title": "Poetry: dependency and virtual environment management",
+            "depth": 2,
+            "startPage": 56,
+            "children": []
+          },
+          {
+            "id": 35,
+            "title": "Poe the Poet: task execution tool",
+            "depth": 2,
+            "startPage": 58,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "MLOps and LLMOps tooling",
+        "depth": 1,
+        "startPage": 59,
+        "children": [
+          {
+            "id": 37,
+            "title": "Hugging Face: model registry",
+            "depth": 2,
+            "startPage": 60,
+            "children": []
+          },
+          {
+            "id": 38,
+            "title": "ZenML: orchestrator, artifacts, and metadata",
+            "depth": 2,
+            "startPage": 61,
+            "children": [
+              {
+                "id": 39,
+                "title": "Orchestrator",
+                "depth": 3,
+                "startPage": 62,
+                "children": []
+              },
+              {
+                "id": 40,
+                "title": "Artifacts and metadata",
+                "depth": 3,
+                "startPage": 68,
+                "children": []
+              },
+              {
+                "id": 41,
+                "title": "How to run and configure a ZenML pipeline",
+                "depth": 3,
+                "startPage": 72,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 42,
+            "title": "Comet ML: experiment tracker",
+            "depth": 2,
+            "startPage": 74,
+            "children": []
+          },
+          {
+            "id": 43,
+            "title": "Opik: prompt monitoring",
+            "depth": 2,
+            "startPage": 75,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "title": "Databases for storing unstructured and vector data",
+        "depth": 1,
+        "startPage": 76,
+        "children": [
+          {
+            "id": 45,
+            "title": "MongoDB: NoSQL database",
+            "depth": 2,
+            "startPage": 76,
+            "children": []
+          },
+          {
+            "id": 46,
+            "title": "Qdrant: vector database",
+            "depth": 2,
+            "startPage": 76,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "title": "Preparing for AWS",
+        "depth": 1,
+        "startPage": 77,
+        "children": [
+          {
+            "id": 48,
+            "title": "Setting up an AWS account, an access key, and the CLI",
+            "depth": 2,
+            "startPage": 77,
+            "children": []
+          },
+          {
+            "id": 49,
+            "title": "SageMaker: training and inference compute",
+            "depth": 2,
+            "startPage": 79,
+            "children": [
+              {
+                "id": 50,
+                "title": "Why AWS SageMaker?",
+                "depth": 3,
+                "startPage": 80,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 51,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 81,
+        "children": []
+      },
+      {
+        "id": 52,
+        "title": "References",
+        "depth": 1,
+        "startPage": 82,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Chapter 3: Data Engineering",
+    "depth": 0,
+    "startPage": 84,
+    "children": [
+      {
+        "id": 54,
+        "title": "Designing the LLM Twin’s data collection pipeline",
+        "depth": 1,
+        "startPage": 85,
+        "children": [
+          {
+            "id": 55,
+            "title": "Implementing the LLM Twin’s data collection pipeline",
+            "depth": 2,
+            "startPage": 90,
+            "children": []
+          },
+          {
+            "id": 56,
+            "title": "ZenML pipeline and steps",
+            "depth": 2,
+            "startPage": 90,
+            "children": []
+          },
+          {
+            "id": 57,
+            "title": "The dispatcher: How do you instantiate the right crawler?",
+            "depth": 2,
+            "startPage": 95,
+            "children": []
+          },
+          {
+            "id": 58,
+            "title": "The crawlers",
+            "depth": 2,
+            "startPage": 98,
+            "children": [
+              {
+                "id": 59,
+                "title": "Base classes",
+                "depth": 3,
+                "startPage": 98,
+                "children": []
+              },
+              {
+                "id": 60,
+                "title": "GitHubCrawler class",
+                "depth": 3,
+                "startPage": 102,
+                "children": []
+              },
+              {
+                "id": 61,
+                "title": "CustomArticleCrawler class",
+                "depth": 3,
+                "startPage": 104,
+                "children": []
+              },
+              {
+                "id": 62,
+                "title": "MediumCrawler class",
+                "depth": 3,
+                "startPage": 106,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 63,
+            "title": "The NoSQL data warehouse documents",
+            "depth": 2,
+            "startPage": 108,
+            "children": [
+              {
+                "id": 64,
+                "title": "The ORM and ODM software patterns",
+                "depth": 3,
+                "startPage": 109,
+                "children": []
+              },
+              {
+                "id": 65,
+                "title": "Implementing the ODM class",
+                "depth": 3,
+                "startPage": 111,
+                "children": []
+              },
+              {
+                "id": 66,
+                "title": "Data categories and user document classes",
+                "depth": 3,
+                "startPage": 116,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 67,
+        "title": "Gathering raw data into the data warehouse",
+        "depth": 1,
+        "startPage": 118,
+        "children": [
+          {
+            "id": 68,
+            "title": "Troubleshooting",
+            "depth": 2,
+            "startPage": 123,
+            "children": [
+              {
+                "id": 69,
+                "title": "Selenium issues",
+                "depth": 3,
+                "startPage": 124,
+                "children": []
+              },
+              {
+                "id": 70,
+                "title": "Import our backed-up data",
+                "depth": 3,
+                "startPage": 124,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 71,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 125,
+        "children": []
+      },
+      {
+        "id": 72,
+        "title": "References",
+        "depth": 1,
+        "startPage": 125,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Chapter 4: RAG Feature Pipeline",
+    "depth": 0,
+    "startPage": 128,
+    "children": [
+      {
+        "id": 74,
+        "title": "Understanding RAG",
+        "depth": 1,
+        "startPage": 129,
+        "children": [
+          {
+            "id": 75,
+            "title": "Why use RAG?",
+            "depth": 2,
+            "startPage": 129,
+            "children": [
+              {
+                "id": 76,
+                "title": "Hallucinations",
+                "depth": 3,
+                "startPage": 130,
+                "children": []
+              },
+              {
+                "id": 77,
+                "title": "Old information",
+                "depth": 3,
+                "startPage": 130,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 78,
+            "title": "The vanilla RAG framework",
+            "depth": 2,
+            "startPage": 130,
+            "children": [
+              {
+                "id": 79,
+                "title": "Ingestion pipeline",
+                "depth": 3,
+                "startPage": 133,
+                "children": []
+              },
+              {
+                "id": 80,
+                "title": "Retrieval pipeline",
+                "depth": 3,
+                "startPage": 134,
+                "children": []
+              },
+              {
+                "id": 81,
+                "title": "Generation pipeline",
+                "depth": 3,
+                "startPage": 134,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 82,
+            "title": "What are embeddings?",
+            "depth": 2,
+            "startPage": 136,
+            "children": [
+              {
+                "id": 83,
+                "title": "Why embeddings are so powerful",
+                "depth": 3,
+                "startPage": 138,
+                "children": []
+              },
+              {
+                "id": 84,
+                "title": "How are embeddings created?",
+                "depth": 3,
+                "startPage": 140,
+                "children": []
+              },
+              {
+                "id": 85,
+                "title": "Applications of embeddings",
+                "depth": 3,
+                "startPage": 143,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 86,
+            "title": "More on vector DBs",
+            "depth": 2,
+            "startPage": 144,
+            "children": [
+              {
+                "id": 87,
+                "title": "How does a vector DB work?",
+                "depth": 3,
+                "startPage": 144,
+                "children": []
+              },
+              {
+                "id": 88,
+                "title": "Algorithms for creating the vector index",
+                "depth": 3,
+                "startPage": 145,
+                "children": []
+              },
+              {
+                "id": 89,
+                "title": "DB operations",
+                "depth": 3,
+                "startPage": 145,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 90,
+        "title": "An overview of advanced RAG",
+        "depth": 1,
+        "startPage": 146,
+        "children": [
+          {
+            "id": 91,
+            "title": "Pre-retrieval",
+            "depth": 2,
+            "startPage": 148,
+            "children": []
+          },
+          {
+            "id": 92,
+            "title": "Retrieval",
+            "depth": 2,
+            "startPage": 151,
+            "children": []
+          },
+          {
+            "id": 93,
+            "title": "Post-retrieval",
+            "depth": 2,
+            "startPage": 153,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 94,
+        "title": "Exploring the LLM Twin’s RAG feature pipeline architecture",
+        "depth": 1,
+        "startPage": 156,
+        "children": [
+          {
+            "id": 95,
+            "title": "The problem we are solving",
+            "depth": 2,
+            "startPage": 156,
+            "children": []
+          },
+          {
+            "id": 96,
+            "title": "The feature store",
+            "depth": 2,
+            "startPage": 157,
+            "children": []
+          },
+          {
+            "id": 97,
+            "title": "Where does the raw data come from?",
+            "depth": 2,
+            "startPage": 157,
+            "children": []
+          },
+          {
+            "id": 98,
+            "title": "Designing the architecture of the RAG feature pipeline",
+            "depth": 2,
+            "startPage": 158,
+            "children": [
+              {
+                "id": 99,
+                "title": "Batch pipelines",
+                "depth": 3,
+                "startPage": 159,
+                "children": []
+              },
+              {
+                "id": 100,
+                "title": "Batch versus streaming pipelines",
+                "depth": 3,
+                "startPage": 159,
+                "children": []
+              },
+              {
+                "id": 101,
+                "title": "Core steps",
+                "depth": 3,
+                "startPage": 163,
+                "children": []
+              },
+              {
+                "id": 102,
+                "title": "Change data capture: syncing the data warehouse and feature store",
+                "depth": 3,
+                "startPage": 165,
+                "children": []
+              },
+              {
+                "id": 103,
+                "title": "Why is the data stored in two snapshots?",
+                "depth": 3,
+                "startPage": 167,
+                "children": []
+              },
+              {
+                "id": 104,
+                "title": "Orchestration",
+                "depth": 3,
+                "startPage": 167,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 105,
+        "title": "Implementing the LLM Twin’s RAG feature pipeline",
+        "depth": 1,
+        "startPage": 168,
+        "children": [
+          {
+            "id": 106,
+            "title": "Settings",
+            "depth": 2,
+            "startPage": 168,
+            "children": []
+          },
+          {
+            "id": 107,
+            "title": "ZenML pipeline and steps",
+            "depth": 2,
+            "startPage": 169,
+            "children": [
+              {
+                "id": 108,
+                "title": "Querying the data warehouse",
+                "depth": 3,
+                "startPage": 172,
+                "children": []
+              },
+              {
+                "id": 109,
+                "title": "Cleaning the documents",
+                "depth": 3,
+                "startPage": 175,
+                "children": []
+              },
+              {
+                "id": 110,
+                "title": "Chunk and embed the cleaned documents",
+                "depth": 3,
+                "startPage": 176,
+                "children": []
+              },
+              {
+                "id": 111,
+                "title": "Loading the documents to the vector DB",
+                "depth": 3,
+                "startPage": 179,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 112,
+            "title": "Pydantic domain entities",
+            "depth": 2,
+            "startPage": 179,
+            "children": [
+              {
+                "id": 113,
+                "title": "OVM",
+                "depth": 3,
+                "startPage": 183,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 114,
+            "title": "The dispatcher layer",
+            "depth": 2,
+            "startPage": 189,
+            "children": []
+          },
+          {
+            "id": 115,
+            "title": "The handlers",
+            "depth": 2,
+            "startPage": 191,
+            "children": [
+              {
+                "id": 116,
+                "title": "The cleaning handlers",
+                "depth": 3,
+                "startPage": 192,
+                "children": []
+              },
+              {
+                "id": 117,
+                "title": "The chunking handlers",
+                "depth": 3,
+                "startPage": 194,
+                "children": []
+              },
+              {
+                "id": 118,
+                "title": "The embedding handlers",
+                "depth": 3,
+                "startPage": 198,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 119,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 202,
+        "children": []
+      },
+      {
+        "id": 120,
+        "title": "References",
+        "depth": 1,
+        "startPage": 203,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "title": "Chapter 5: Supervised Fine-Tuning",
+    "depth": 0,
+    "startPage": 206,
+    "children": [
+      {
+        "id": 122,
+        "title": "Creating an instruction dataset",
+        "depth": 1,
+        "startPage": 207,
+        "children": [
+          {
+            "id": 123,
+            "title": "General framework",
+            "depth": 2,
+            "startPage": 207,
+            "children": [
+              {
+                "id": 124,
+                "title": "Data quantity",
+                "depth": 3,
+                "startPage": 209,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 125,
+            "title": "Data curation",
+            "depth": 2,
+            "startPage": 211,
+            "children": []
+          },
+          {
+            "id": 126,
+            "title": "Rule-based filtering",
+            "depth": 2,
+            "startPage": 211,
+            "children": []
+          },
+          {
+            "id": 127,
+            "title": "Data deduplication",
+            "depth": 2,
+            "startPage": 213,
+            "children": []
+          },
+          {
+            "id": 128,
+            "title": "Data decontamination",
+            "depth": 2,
+            "startPage": 214,
+            "children": []
+          },
+          {
+            "id": 129,
+            "title": "Data quality evaluation",
+            "depth": 2,
+            "startPage": 215,
+            "children": []
+          },
+          {
+            "id": 130,
+            "title": "Data exploration",
+            "depth": 2,
+            "startPage": 218,
+            "children": []
+          },
+          {
+            "id": 131,
+            "title": "Data generation",
+            "depth": 2,
+            "startPage": 220,
+            "children": []
+          },
+          {
+            "id": 132,
+            "title": "Data augmentation",
+            "depth": 2,
+            "startPage": 222,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 133,
+        "title": "Creating our own instruction dataset",
+        "depth": 1,
+        "startPage": 225,
+        "children": []
+      },
+      {
+        "id": 134,
+        "title": "Exploring SFT and its techniques",
+        "depth": 1,
+        "startPage": 235,
+        "children": [
+          {
+            "id": 135,
+            "title": "When to fine-tune",
+            "depth": 2,
+            "startPage": 235,
+            "children": []
+          },
+          {
+            "id": 136,
+            "title": "Instruction dataset formats",
+            "depth": 2,
+            "startPage": 237,
+            "children": []
+          },
+          {
+            "id": 137,
+            "title": "Chat templates",
+            "depth": 2,
+            "startPage": 237,
+            "children": []
+          },
+          {
+            "id": 138,
+            "title": "Parameter-efficient fine-tuning techniques",
+            "depth": 2,
+            "startPage": 240,
+            "children": [
+              {
+                "id": 139,
+                "title": "Full fine-tuning",
+                "depth": 3,
+                "startPage": 240,
+                "children": []
+              },
+              {
+                "id": 140,
+                "title": "LoRA",
+                "depth": 3,
+                "startPage": 242,
+                "children": []
+              },
+              {
+                "id": 141,
+                "title": "QLoRA",
+                "depth": 3,
+                "startPage": 244,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 142,
+            "title": "Training parameters",
+            "depth": 2,
+            "startPage": 245,
+            "children": [
+              {
+                "id": 143,
+                "title": "Learning rate and scheduler",
+                "depth": 3,
+                "startPage": 245,
+                "children": []
+              },
+              {
+                "id": 144,
+                "title": "Batch size",
+                "depth": 3,
+                "startPage": 245,
+                "children": []
+              },
+              {
+                "id": 145,
+                "title": "Maximum length and packing",
+                "depth": 3,
+                "startPage": 246,
+                "children": []
+              },
+              {
+                "id": 146,
+                "title": "Number of epochs",
+                "depth": 3,
+                "startPage": 247,
+                "children": []
+              },
+              {
+                "id": 147,
+                "title": "Optimizers",
+                "depth": 3,
+                "startPage": 247,
+                "children": []
+              },
+              {
+                "id": 148,
+                "title": "Weight decay",
+                "depth": 3,
+                "startPage": 248,
+                "children": []
+              },
+              {
+                "id": 149,
+                "title": "Gradient checkpointing",
+                "depth": 3,
+                "startPage": 248,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 150,
+        "title": "Fine-tuning in practice",
+        "depth": 1,
+        "startPage": 248,
+        "children": []
+      },
+      {
+        "id": 151,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 255,
+        "children": []
+      },
+      {
+        "id": 152,
+        "title": "References",
+        "depth": 1,
+        "startPage": 256,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "title": "Chapter 6: Fine-Tuning with Preference Alignment",
+    "depth": 0,
+    "startPage": 258,
+    "children": [
+      {
+        "id": 154,
+        "title": "Understanding preference datasets",
+        "depth": 1,
+        "startPage": 259,
+        "children": [
+          {
+            "id": 155,
+            "title": "Preference data",
+            "depth": 2,
+            "startPage": 259,
+            "children": [
+              {
+                "id": 156,
+                "title": "Data quantity",
+                "depth": 3,
+                "startPage": 261,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 157,
+            "title": "Data generation and evaluation",
+            "depth": 2,
+            "startPage": 262,
+            "children": [
+              {
+                "id": 158,
+                "title": "Generating preferences",
+                "depth": 3,
+                "startPage": 262,
+                "children": []
+              },
+              {
+                "id": 159,
+                "title": "Tips for data generation",
+                "depth": 3,
+                "startPage": 263,
+                "children": []
+              },
+              {
+                "id": 160,
+                "title": "Evaluating preferences",
+                "depth": 3,
+                "startPage": 264,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 161,
+        "title": "Creating our own preference dataset",
+        "depth": 1,
+        "startPage": 266,
+        "children": []
+      },
+      {
+        "id": 162,
+        "title": "Preference alignment",
+        "depth": 1,
+        "startPage": 274,
+        "children": [
+          {
+            "id": 163,
+            "title": "Reinforcement Learning from Human Feedback",
+            "depth": 2,
+            "startPage": 275,
+            "children": []
+          },
+          {
+            "id": 164,
+            "title": "Direct Preference Optimization",
+            "depth": 2,
+            "startPage": 277,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 165,
+        "title": "Implementing DPO",
+        "depth": 1,
+        "startPage": 279,
+        "children": []
+      },
+      {
+        "id": 166,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 286,
+        "children": []
+      },
+      {
+        "id": 167,
+        "title": "References",
+        "depth": 1,
+        "startPage": 287,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "title": "Chapter 7: Evaluating LLMs",
+    "depth": 0,
+    "startPage": 290,
+    "children": [
+      {
+        "id": 169,
+        "title": "Model evaluation",
+        "depth": 1,
+        "startPage": 290,
+        "children": [
+          {
+            "id": 170,
+            "title": "Comparing ML and LLM evaluation",
+            "depth": 2,
+            "startPage": 291,
+            "children": []
+          },
+          {
+            "id": 171,
+            "title": "General-purpose LLM evaluations",
+            "depth": 2,
+            "startPage": 292,
+            "children": []
+          },
+          {
+            "id": 172,
+            "title": "Domain-specific LLM evaluations",
+            "depth": 2,
+            "startPage": 294,
+            "children": []
+          },
+          {
+            "id": 173,
+            "title": "Task-specific LLM evaluations",
+            "depth": 2,
+            "startPage": 296,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 174,
+        "title": "RAG evaluation",
+        "depth": 1,
+        "startPage": 300,
+        "children": [
+          {
+            "id": 175,
+            "title": "Ragas",
+            "depth": 2,
+            "startPage": 301,
+            "children": []
+          },
+          {
+            "id": 176,
+            "title": "ARES",
+            "depth": 2,
+            "startPage": 303,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 177,
+        "title": "Evaluating TwinLlama-3.1-8B",
+        "depth": 1,
+        "startPage": 304,
+        "children": [
+          {
+            "id": 178,
+            "title": "Generating answers",
+            "depth": 2,
+            "startPage": 305,
+            "children": []
+          },
+          {
+            "id": 179,
+            "title": "Evaluating answers",
+            "depth": 2,
+            "startPage": 307,
+            "children": []
+          },
+          {
+            "id": 180,
+            "title": "Analyzing results",
+            "depth": 2,
+            "startPage": 312,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 181,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 315,
+        "children": []
+      },
+      {
+        "id": 182,
+        "title": "References",
+        "depth": 1,
+        "startPage": 316,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "title": "Chapter 8: Inference Optimization",
+    "depth": 0,
+    "startPage": 318,
+    "children": [
+      {
+        "id": 184,
+        "title": "Model optimization strategies",
+        "depth": 1,
+        "startPage": 319,
+        "children": [
+          {
+            "id": 185,
+            "title": "KV cache",
+            "depth": 2,
+            "startPage": 320,
+            "children": []
+          },
+          {
+            "id": 186,
+            "title": "Continuous batching",
+            "depth": 2,
+            "startPage": 323,
+            "children": []
+          },
+          {
+            "id": 187,
+            "title": "Speculative decoding",
+            "depth": 2,
+            "startPage": 324,
+            "children": []
+          },
+          {
+            "id": 188,
+            "title": "Optimized attention mechanisms",
+            "depth": 2,
+            "startPage": 326,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 189,
+        "title": "Model parallelism",
+        "depth": 1,
+        "startPage": 327,
+        "children": [
+          {
+            "id": 190,
+            "title": "Data parallelism",
+            "depth": 2,
+            "startPage": 328,
+            "children": []
+          },
+          {
+            "id": 191,
+            "title": "Pipeline parallelism",
+            "depth": 2,
+            "startPage": 329,
+            "children": []
+          },
+          {
+            "id": 192,
+            "title": "Tensor parallelism",
+            "depth": 2,
+            "startPage": 330,
+            "children": []
+          },
+          {
+            "id": 193,
+            "title": "Combining approaches",
+            "depth": 2,
+            "startPage": 332,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 194,
+        "title": "Model quantization",
+        "depth": 1,
+        "startPage": 332,
+        "children": [
+          {
+            "id": 195,
+            "title": "Introduction to quantization",
+            "depth": 2,
+            "startPage": 333,
+            "children": []
+          },
+          {
+            "id": 196,
+            "title": "Quantization with GGUF and llama.cpp",
+            "depth": 2,
+            "startPage": 338,
+            "children": []
+          },
+          {
+            "id": 197,
+            "title": "Quantization with GPTQ and EXL2",
+            "depth": 2,
+            "startPage": 340,
+            "children": []
+          },
+          {
+            "id": 198,
+            "title": "Other quantization techniques",
+            "depth": 2,
+            "startPage": 342,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 199,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 343,
+        "children": []
+      },
+      {
+        "id": 200,
+        "title": "References",
+        "depth": 1,
+        "startPage": 344,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "title": "Chapter 9: RAG Inference Pipeline",
+    "depth": 0,
+    "startPage": 346,
+    "children": [
+      {
+        "id": 202,
+        "title": "Understanding the LLM twin’s RAG inference pipeline",
+        "depth": 1,
+        "startPage": 347,
+        "children": []
+      },
+      {
+        "id": 203,
+        "title": "Exploring the LLM twin’s advanced RAG techniques",
+        "depth": 1,
+        "startPage": 350,
+        "children": [
+          {
+            "id": 204,
+            "title": "Advanced RAG pre-retrieval optimizations: query expansion and self-querying",
+            "depth": 2,
+            "startPage": 353,
+            "children": [
+              {
+                "id": 205,
+                "title": "Query expansion",
+                "depth": 3,
+                "startPage": 353,
+                "children": []
+              },
+              {
+                "id": 206,
+                "title": "Self-querying",
+                "depth": 3,
+                "startPage": 357,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 207,
+            "title": "Advanced RAG retrieval optimization: filtered vector search",
+            "depth": 2,
+            "startPage": 361,
+            "children": []
+          },
+          {
+            "id": 208,
+            "title": "Advanced RAG post-retrieval optimization: reranking",
+            "depth": 2,
+            "startPage": 363,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 209,
+        "title": "Implementing the LLM twin’s RAG inference pipeline",
+        "depth": 1,
+        "startPage": 367,
+        "children": [
+          {
+            "id": 210,
+            "title": "Implementing the retrieval module",
+            "depth": 2,
+            "startPage": 368,
+            "children": []
+          },
+          {
+            "id": 211,
+            "title": "Bringing everything together into the RAG inference pipeline",
+            "depth": 2,
+            "startPage": 375,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 212,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 380,
+        "children": []
+      },
+      {
+        "id": 213,
+        "title": "References",
+        "depth": 1,
+        "startPage": 380,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "title": "Chapter 10: Inference Pipeline Deployment",
+    "depth": 0,
+    "startPage": 384,
+    "children": [
+      {
+        "id": 215,
+        "title": "Criteria for choosing deployment types",
+        "depth": 1,
+        "startPage": 385,
+        "children": [
+          {
+            "id": 216,
+            "title": "Throughput and latency",
+            "depth": 2,
+            "startPage": 385,
+            "children": []
+          },
+          {
+            "id": 217,
+            "title": "Data",
+            "depth": 2,
+            "startPage": 386,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 218,
+        "title": "Understanding inference deployment types",
+        "depth": 1,
+        "startPage": 388,
+        "children": [
+          {
+            "id": 219,
+            "title": "Online real-time inference",
+            "depth": 2,
+            "startPage": 389,
+            "children": []
+          },
+          {
+            "id": 220,
+            "title": "Asynchronous inference",
+            "depth": 2,
+            "startPage": 390,
+            "children": []
+          },
+          {
+            "id": 221,
+            "title": "Offline batch transform",
+            "depth": 2,
+            "startPage": 391,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 222,
+        "title": "Monolithic versus microservices architecture in model serving",
+        "depth": 1,
+        "startPage": 392,
+        "children": [
+          {
+            "id": 223,
+            "title": "Monolithic architecture",
+            "depth": 2,
+            "startPage": 394,
+            "children": []
+          },
+          {
+            "id": 224,
+            "title": "Microservices architecture",
+            "depth": 2,
+            "startPage": 394,
+            "children": []
+          },
+          {
+            "id": 225,
+            "title": "Choosing between monolithic and microservices architectures",
+            "depth": 2,
+            "startPage": 396,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 226,
+        "title": "Exploring the LLM Twin’s inference pipeline deployment strategy",
+        "depth": 1,
+        "startPage": 397,
+        "children": [
+          {
+            "id": 227,
+            "title": "The training versus the inference pipeline",
+            "depth": 2,
+            "startPage": 400,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 228,
+        "title": "Deploying the LLM Twin service",
+        "depth": 1,
+        "startPage": 401,
+        "children": [
+          {
+            "id": 229,
+            "title": "Implementing the LLM microservice using AWS SageMaker",
+            "depth": 2,
+            "startPage": 402,
+            "children": [
+              {
+                "id": 230,
+                "title": "What are Hugging Face’s DLCs?",
+                "depth": 3,
+                "startPage": 402,
+                "children": []
+              },
+              {
+                "id": 231,
+                "title": "Configuring SageMaker roles",
+                "depth": 3,
+                "startPage": 403,
+                "children": []
+              },
+              {
+                "id": 232,
+                "title": "Deploying the LLM Twin model to AWS SageMaker",
+                "depth": 3,
+                "startPage": 404,
+                "children": []
+              },
+              {
+                "id": 233,
+                "title": "Calling the AWS SageMaker Inference endpoint",
+                "depth": 3,
+                "startPage": 415,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 234,
+            "title": "Building the business microservice using FastAPI",
+            "depth": 2,
+            "startPage": 419,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 235,
+        "title": "Autoscaling capabilities to handle spikes in usage",
+        "depth": 1,
+        "startPage": 422,
+        "children": [
+          {
+            "id": 236,
+            "title": "Registering a scalable target",
+            "depth": 2,
+            "startPage": 425,
+            "children": []
+          },
+          {
+            "id": 237,
+            "title": "Creating a scalable policy",
+            "depth": 2,
+            "startPage": 426,
+            "children": []
+          },
+          {
+            "id": 238,
+            "title": "Minimum and maximum scaling limits",
+            "depth": 2,
+            "startPage": 427,
+            "children": [
+              {
+                "id": 239,
+                "title": "Cooldown period",
+                "depth": 3,
+                "startPage": 427,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 240,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 428,
+        "children": []
+      },
+      {
+        "id": 241,
+        "title": "References",
+        "depth": 1,
+        "startPage": 429,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 242,
+    "title": "Chapter 11: MLOps and LLMOps",
+    "depth": 0,
+    "startPage": 430,
+    "children": [
+      {
+        "id": 243,
+        "title": "The path to LLMOps: Understanding its roots in DevOps and MLOps",
+        "depth": 1,
+        "startPage": 431,
+        "children": [
+          {
+            "id": 244,
+            "title": "DevOps",
+            "depth": 2,
+            "startPage": 432,
+            "children": [
+              {
+                "id": 245,
+                "title": "The DevOps lifecycle",
+                "depth": 3,
+                "startPage": 432,
+                "children": []
+              },
+              {
+                "id": 246,
+                "title": "The core DevOps concepts",
+                "depth": 3,
+                "startPage": 433,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 247,
+            "title": "MLOps",
+            "depth": 2,
+            "startPage": 434,
+            "children": [
+              {
+                "id": 248,
+                "title": "MLOps core components",
+                "depth": 3,
+                "startPage": 436,
+                "children": []
+              },
+              {
+                "id": 249,
+                "title": "MLOps principles",
+                "depth": 3,
+                "startPage": 436,
+                "children": []
+              },
+              {
+                "id": 250,
+                "title": "ML vs. MLOps engineering",
+                "depth": 3,
+                "startPage": 438,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 251,
+            "title": "LLMOps",
+            "depth": 2,
+            "startPage": 439,
+            "children": [
+              {
+                "id": 252,
+                "title": "Human feedback",
+                "depth": 3,
+                "startPage": 440,
+                "children": []
+              },
+              {
+                "id": 253,
+                "title": "Guardrails",
+                "depth": 3,
+                "startPage": 440,
+                "children": []
+              },
+              {
+                "id": 254,
+                "title": "Prompt monitoring",
+                "depth": 3,
+                "startPage": 442,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 255,
+        "title": "Deploying the LLM Twin’s pipelines to the cloud",
+        "depth": 1,
+        "startPage": 444,
+        "children": [
+          {
+            "id": 256,
+            "title": "Understanding the infrastructure",
+            "depth": 2,
+            "startPage": 445,
+            "children": []
+          },
+          {
+            "id": 257,
+            "title": "Setting up MongoDB",
+            "depth": 2,
+            "startPage": 447,
+            "children": []
+          },
+          {
+            "id": 258,
+            "title": "Setting up Qdrant",
+            "depth": 2,
+            "startPage": 448,
+            "children": []
+          },
+          {
+            "id": 259,
+            "title": "Setting up the ZenML cloud",
+            "depth": 2,
+            "startPage": 450,
+            "children": [
+              {
+                "id": 260,
+                "title": "Containerize the code using Docker",
+                "depth": 3,
+                "startPage": 453,
+                "children": []
+              },
+              {
+                "id": 261,
+                "title": "Run the pipelines on AWS",
+                "depth": 3,
+                "startPage": 457,
+                "children": []
+              },
+              {
+                "id": 262,
+                "title": "Troubleshooting the ResourceLimitExceeded error after running a ZenML pipeline on SageMaker",
+                "depth": 3,
+                "startPage": 461,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 263,
+        "title": "Adding LLMOps to the LLM Twin",
+        "depth": 1,
+        "startPage": 463,
+        "children": [
+          {
+            "id": 264,
+            "title": "LLM Twin’s CI/CD pipeline flow",
+            "depth": 2,
+            "startPage": 463,
+            "children": [
+              {
+                "id": 265,
+                "title": "More on formatting errors",
+                "depth": 3,
+                "startPage": 465,
+                "children": []
+              },
+              {
+                "id": 266,
+                "title": "More on linting errors",
+                "depth": 3,
+                "startPage": 465,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 267,
+            "title": "Quick overview of GitHub Actions",
+            "depth": 2,
+            "startPage": 466,
+            "children": []
+          },
+          {
+            "id": 268,
+            "title": "The CI pipeline",
+            "depth": 2,
+            "startPage": 467,
+            "children": [
+              {
+                "id": 269,
+                "title": "GitHub Actions CI YAML file",
+                "depth": 3,
+                "startPage": 467,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 270,
+            "title": "The CD pipeline",
+            "depth": 2,
+            "startPage": 471,
+            "children": []
+          },
+          {
+            "id": 271,
+            "title": "Test out the CI/CD pipeline",
+            "depth": 2,
+            "startPage": 474,
+            "children": []
+          },
+          {
+            "id": 272,
+            "title": "The CT pipeline",
+            "depth": 2,
+            "startPage": 475,
+            "children": [
+              {
+                "id": 273,
+                "title": "Initial triggers",
+                "depth": 3,
+                "startPage": 477,
+                "children": []
+              },
+              {
+                "id": 274,
+                "title": "Trigger downstream pipelines",
+                "depth": 3,
+                "startPage": 478,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 275,
+            "title": "Prompt monitoring",
+            "depth": 2,
+            "startPage": 480,
+            "children": []
+          },
+          {
+            "id": 276,
+            "title": "Alerting",
+            "depth": 2,
+            "startPage": 486,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 277,
+        "title": "Summary",
+        "depth": 1,
+        "startPage": 487,
+        "children": []
+      },
+      {
+        "id": 278,
+        "title": "References",
+        "depth": 1,
+        "startPage": 488,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "title": "Appendix: MLOps Principles",
+    "depth": 0,
+    "startPage": 490,
+    "children": [
+      {
+        "id": 280,
+        "title": "1. Automation or operationalization",
+        "depth": 1,
+        "startPage": 490,
+        "children": []
+      },
+      {
+        "id": 281,
+        "title": "2. Versioning",
+        "depth": 1,
+        "startPage": 492,
+        "children": []
+      },
+      {
+        "id": 282,
+        "title": "3. Experiment tracking",
+        "depth": 1,
+        "startPage": 493,
+        "children": []
+      },
+      {
+        "id": 283,
+        "title": "4. Testing",
+        "depth": 1,
+        "startPage": 493,
+        "children": [
+          {
+            "id": 284,
+            "title": "Test types",
+            "depth": 2,
+            "startPage": 493,
+            "children": []
+          },
+          {
+            "id": 285,
+            "title": "What do we test?",
+            "depth": 2,
+            "startPage": 494,
+            "children": []
+          },
+          {
+            "id": 286,
+            "title": "Test examples",
+            "depth": 2,
+            "startPage": 494,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 287,
+        "title": "5. Monitoring",
+        "depth": 1,
+        "startPage": 497,
+        "children": [
+          {
+            "id": 288,
+            "title": "Logs",
+            "depth": 2,
+            "startPage": 497,
+            "children": []
+          },
+          {
+            "id": 289,
+            "title": "Metrics",
+            "depth": 2,
+            "startPage": 497,
+            "children": [
+              {
+                "id": 290,
+                "title": "System metrics",
+                "depth": 3,
+                "startPage": 498,
+                "children": []
+              },
+              {
+                "id": 291,
+                "title": "Model metrics",
+                "depth": 3,
+                "startPage": 498,
+                "children": []
+              },
+              {
+                "id": 292,
+                "title": "Drifts",
+                "depth": 3,
+                "startPage": 498,
+                "children": []
+              },
+              {
+                "id": 293,
+                "title": "Monitoring vs. observability",
+                "depth": 3,
+                "startPage": 501,
+                "children": []
+              },
+              {
+                "id": 294,
+                "title": "Alerts",
+                "depth": 3,
+                "startPage": 502,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 295,
+        "title": "6. Reproducibility",
+        "depth": 1,
+        "startPage": 502,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 296,
+    "title": "Packt Page",
+    "depth": 0,
+    "startPage": 504,
+    "children": []
+  },
+  {
+    "id": 297,
+    "title": "Other Books You May Enjoy",
+    "depth": 0,
+    "startPage": 506,
+    "children": []
+  },
+  {
+    "id": 298,
+    "title": "Index",
+    "depth": 0,
+    "startPage": 510,
+    "children": []
+  }
+]

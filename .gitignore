@@ -1,0 +1,8 @@
+node_modules/
+dist/
+book.pdf
+shots/
+/page-images
+vite.config.ts.timestamp-*.mjs
+tsconfig.tsbuildinfo
+.DS_Store

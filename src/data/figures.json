@@ -1,0 +1,772 @@
+[
+  {
+    "id": "1.1",
+    "page": 38,
+    "caption": "Figure 1.1: Common elements from an ML system",
+    "isCaption": true,
+    "image": "figures/p38.png"
+  },
+  {
+    "id": "1.2",
+    "page": 39,
+    "caption": "Figure 1.2: Monolithic batch pipeline architecture",
+    "isCaption": true,
+    "image": "figures/p39.png"
+  },
+  {
+    "id": "1.3",
+    "page": 40,
+    "caption": "Figure 1.3: Stateless real-time architecture",
+    "isCaption": true,
+    "image": "figures/p40.png"
+  },
+  {
+    "id": "1.4",
+    "page": 41,
+    "caption": "shown in Figure 1.4. Unfortunately, even if it’s a feasible solution, it’s very complex and not intu-",
+    "isCaption": true,
+    "image": "figures/p41.png"
+  },
+  {
+    "id": "1.5",
+    "page": 42,
+    "caption": "Figure 1.5: FTI pipelines architecture",
+    "isCaption": true,
+    "image": "figures/p42.png"
+  },
+  {
+    "id": "1.6",
+    "page": 47,
+    "caption": "Figure 1.6: LLM Twin high-level architecture",
+    "isCaption": true,
+    "image": "figures/p47.png"
+  },
+  {
+    "id": "2.1",
+    "page": 60,
+    "caption": "Figure 2.1: Hugging Face model registry example",
+    "isCaption": true,
+    "image": "figures/p60.png"
+  },
+  {
+    "id": "2.2",
+    "page": 63,
+    "caption": "illustrated in Figure 2.2:",
+    "isCaption": true,
+    "image": "figures/p63.png"
+  },
+  {
+    "id": "2.3",
+    "page": 63,
+    "caption": "pipeline runs, as seen in Figure 2.3. You can see which one succeeded, failed, or is still running.",
+    "isCaption": true,
+    "image": "figures/p63.png"
+  },
+  {
+    "id": "2.4",
+    "page": 64,
+    "caption": "Figure 2.4: ZenML digital_data_etl pipeline run dashboard (example of a specific pipeline run)",
+    "isCaption": true,
+    "image": "figures/p64.png"
+  },
+  {
+    "id": "2.5",
+    "page": 65,
+    "caption": "Figure 2.5.",
+    "isCaption": true,
+    "image": "figures/p65.png"
+  },
+  {
+    "id": "2.6",
+    "page": 67,
+    "caption": "lustrated in Figure 2.6:",
+    "isCaption": true,
+    "image": "figures/p67.png"
+  },
+  {
+    "id": "2.7",
+    "page": 68,
+    "caption": "Figure 2.7: ZenML artifact example using the digital_data_etl pipeline as an example",
+    "isCaption": true,
+    "image": "figures/p68.png"
+  },
+  {
+    "id": "2.8",
+    "page": 69,
+    "caption": "domain, and how many were successful, as illustrated in Figure 2.8:",
+    "isCaption": true,
+    "image": "figures/p69.png"
+  },
+  {
+    "id": "2.9",
+    "page": 70,
+    "caption": "Figure 2.9: ZenML metadata example for the instruct_datasets artifact",
+    "isCaption": true,
+    "image": "figures/p70.png"
+  },
+  {
+    "id": "2.10",
+    "page": 73,
+    "caption": "Figure 2.10: ZenML pipeline configs",
+    "isCaption": true,
+    "image": "figures/p73.png"
+  },
+  {
+    "id": "2.11",
+    "page": 74,
+    "caption": "Figure 2.11: Comet ML training metrics example",
+    "isCaption": true,
+    "image": "figures/p74.png"
+  },
+  {
+    "id": "2.12",
+    "page": 75,
+    "caption": "down your training, as seen in Figure 2.12.",
+    "isCaption": true,
+    "image": "figures/p75.png"
+  },
+  {
+    "id": "2.13",
+    "page": 78,
+    "caption": "user full access, as explained in the tutorial above and illustrated in Figure 2.13.",
+    "isCaption": true,
+    "image": "figures/p78.png"
+  },
+  {
+    "id": "3.1",
+    "page": 85,
+    "caption": "architecture, illustrated in Figure 3.1. We must explore what platforms we will crawl to extract",
+    "isCaption": true,
+    "image": "figures/p85.png"
+  },
+  {
+    "id": "3.2",
+    "page": 87,
+    "caption": "Figure 3.2. First, we will explore the three fundamental data categories we will work with across",
+    "isCaption": true,
+    "image": "figures/p87.png"
+  },
+  {
+    "id": "3.3",
+    "page": 91,
+    "caption": "Figure 3.3: Example of a digital_data_etl pipeline run from ZenML’s dashboard",
+    "isCaption": true,
+    "image": "figures/p91.png"
+  },
+  {
+    "id": "3.4",
+    "page": 95,
+    "caption": "Figure 3.4: The relationship between the provided links, the CrawlerDispatcher, and the",
+    "isCaption": true,
+    "image": "figures/p95.png"
+  },
+  {
+    "id": "3.5",
+    "page": 120,
+    "caption": "Figure 3.5: Example of the user output artifact after running the data collection pipeline using",
+    "isCaption": true,
+    "image": "figures/p120.png"
+  },
+  {
+    "id": "3.6",
+    "page": 121,
+    "caption": "Figure 3.6: Example of the crawled_links output artifact after running the data collection",
+    "isCaption": true,
+    "image": "figures/p121.png"
+  },
+  {
+    "id": "3.7",
+    "page": 124,
+    "caption": "URLs, as illustrated in Figure 3.7. You can leave out the Substack or personal blog URLs as these",
+    "isCaption": true,
+    "image": "figures/p124.png"
+  },
+  {
+    "id": "4.1",
+    "page": 132,
+    "caption": "Figure 4.1: Vanilla RAG architecture",
+    "isCaption": true,
+    "image": "figures/p132.png"
+  },
+  {
+    "id": "4.2",
+    "page": 136,
+    "caption": "Figure 4.2: What are embeddings?",
+    "isCaption": true,
+    "image": "figures/p136.png"
+  },
+  {
+    "id": "4.3",
+    "page": 137,
+    "caption": "Figure 4.3: Visualize embeddings using UMAP (Source: UMAP’s documentation)",
+    "isCaption": true,
+    "image": "figures/p137.png"
+  },
+  {
+    "id": "4.4",
+    "page": 140,
+    "caption": "Figure 4.4: Creating embeddings from an image using a CNN (Image source)",
+    "isCaption": true,
+    "image": "figures/p140.png"
+  },
+  {
+    "id": "4.5",
+    "page": 147,
+    "caption": "Figure 4.5: The three stages of advanced RAG",
+    "isCaption": true,
+    "image": "figures/p147.png"
+  },
+  {
+    "id": "4.6",
+    "page": 149,
+    "caption": "Figure 4.6: Query routing",
+    "isCaption": true,
+    "image": "figures/p149.png"
+  },
+  {
+    "id": "4.7",
+    "page": 154,
+    "caption": "Figure 4.7: Bi-encoder (the standard embedding model) versus cross-encoder",
+    "isCaption": true,
+    "image": "figures/p154.png"
+  },
+  {
+    "id": "4.8",
+    "page": 153,
+    "caption": "information using a re-raking model, as illustrated in Figure 4.8.",
+    "isCaption": true,
+    "image": "figures/p153.png"
+  },
+  {
+    "id": "4.9",
+    "page": 158,
+    "caption": "Figure 4.9: The architecture of the LLM Twin’s RAG feature pipeline",
+    "isCaption": true,
+    "image": "figures/p158.png"
+  },
+  {
+    "id": "4.10",
+    "page": 163,
+    "caption": "Figure 4.10: Tools on the streaming versus batch and smaller versus bigger data spectrum",
+    "isCaption": true,
+    "image": "figures/p163.png"
+  },
+  {
+    "id": "4.11",
+    "page": 170,
+    "caption": "Figure 4.11: Feature pipeline runs in the ZenML dashboard",
+    "isCaption": true,
+    "image": "figures/p170.png"
+  },
+  {
+    "id": "4.12",
+    "page": 170,
+    "caption": "Figure 4.12: Feature pipeline DAG in the ZenML dashboard",
+    "isCaption": true,
+    "image": "figures/p170.png"
+  },
+  {
+    "id": "4.13",
+    "page": 175,
+    "caption": "Figure 4.13: Metadata of the “query the data warehouse” ZenML step",
+    "isCaption": true,
+    "image": "figures/p175.png"
+  },
+  {
+    "id": "4.14",
+    "page": 177,
+    "caption": "Figure 4.14: Metadata of the embedding and chunking ZenML step, detailing the uncategorized",
+    "isCaption": true,
+    "image": "figures/p177.png"
+  },
+  {
+    "id": "4.15",
+    "page": 178,
+    "caption": "Figure 4.15: Metadata of the embedding and chunking ZenML step, detailing the embedding",
+    "isCaption": true,
+    "image": "figures/p178.png"
+  },
+  {
+    "id": "4.16",
+    "page": 181,
+    "caption": "Figure 4.16: Domain entities class hierarchy and their interaction",
+    "isCaption": true,
+    "image": "figures/p181.png"
+  },
+  {
+    "id": "4.17",
+    "page": 192,
+    "caption": "Figure 4.17: Handler class hierarchy and their interaction",
+    "isCaption": true,
+    "image": "figures/p192.png"
+  },
+  {
+    "id": "5.1",
+    "page": 207,
+    "caption": "Figure 5.1 – Overview of the post-training data pipeline covered in this chapter",
+    "isCaption": true,
+    "image": "figures/p207.png"
+  },
+  {
+    "id": "5.2",
+    "page": 209,
+    "caption": "Figure 5.2 – Screenshot of the most-liked datasets on the Hugging Face Hub",
+    "isCaption": true,
+    "image": "figures/p209.png"
+  },
+  {
+    "id": "5.3",
+    "page": 217,
+    "caption": "reinforcement learning or traditional fine-tuning. Figure 5.3 shows ArmoRM-Llama3-8B-v0.1’s",
+    "isCaption": false,
+    "image": "figures/p217.png"
+  },
+  {
+    "id": "5.4",
+    "page": 219,
+    "caption": "Figure 5.4 – Argilla’s interface for collaborative data quality evaluation and exploration",
+    "isCaption": true,
+    "image": "figures/p219.png"
+  },
+  {
+    "id": "5.5",
+    "page": 220,
+    "caption": "Figure 5.5 – Representation of the historical TikTok dataset made with Nomic Atlas",
+    "isCaption": true,
+    "image": "figures/p220.png"
+  },
+  {
+    "id": "5.6",
+    "page": 226,
+    "caption": "Figure 5.6 – Synthetic data generation pipeline from raw text to instruction dataset",
+    "isCaption": true,
+    "image": "figures/p226.png"
+  },
+  {
+    "id": "5.7",
+    "page": 234,
+    "caption": "Figure 5.7 – The mlabonne/llmtwin instruction dataset on the Hugging Face Hub",
+    "isCaption": true,
+    "image": "figures/p234.png"
+  },
+  {
+    "id": "5.8",
+    "page": 236,
+    "caption": "Figure 5.8 – Basic flowchart to determine when fine-tuning is an option on a technical level",
+    "isCaption": true,
+    "image": "figures/p236.png"
+  },
+  {
+    "id": "5.9",
+    "page": 240,
+    "caption": "Figure 5.9 – Architectural differences of the three main SFT techniques at the module level",
+    "isCaption": true,
+    "image": "figures/p240.png"
+  },
+  {
+    "id": "5.10",
+    "page": 242,
+    "caption": "Figure 5.10 – LoRA adds the two trainable matrices 𝐴𝐴 and 𝐵𝐵 and keeps the pre-trained weights",
+    "isCaption": true,
+    "image": "figures/p242.png"
+  },
+  {
+    "id": "5.11",
+    "page": 254,
+    "caption": "Figure 5.11 – Four monitored metrics during fine-tuning in Comet ML",
+    "isCaption": true,
+    "image": "figures/p254.png"
+  },
+  {
+    "id": "6.1",
+    "page": 259,
+    "caption": "of our samples. To achieve this, we follow the same stages, as outlined in Figure 6.1: data curation,",
+    "isCaption": true,
+    "image": "figures/p259.png"
+  },
+  {
+    "id": "6.2",
+    "page": 267,
+    "caption": "Figure 6.2 – Synthetic data generation pipeline from raw text to preference dataset",
+    "isCaption": true,
+    "image": "figures/p267.png"
+  },
+  {
+    "id": "6.3",
+    "page": 274,
+    "caption": "Figure 6.3 – Screenshot of the mlabonne/llmtwin-dpo preference dataset on the Hugging",
+    "isCaption": true,
+    "image": "figures/p274.png"
+  },
+  {
+    "id": "6.4",
+    "page": 276,
+    "caption": "Figure 6.4 – High-level view of the PPO algorithm for preference alignment",
+    "isCaption": true,
+    "image": "figures/p276.png"
+  },
+  {
+    "id": "6.5",
+    "page": 278,
+    "caption": "Figure 6.5 – High-level view of the DPO algorithm for preference alignment",
+    "isCaption": true,
+    "image": "figures/p278.png"
+  },
+  {
+    "id": "6.6",
+    "page": 285,
+    "caption": "Figure 6.6 – Experiment tracking in Comet ML with DPO metrics",
+    "isCaption": true,
+    "image": "figures/p285.png"
+  },
+  {
+    "id": "7.1",
+    "page": 302,
+    "caption": "Figure 7.1: Overview of the Ragas evaluation framework",
+    "isCaption": true,
+    "image": "figures/p302.png"
+  },
+  {
+    "id": "7.2",
+    "page": 303,
+    "caption": "Figure 7.2: Overview of the ARES evaluation framework",
+    "isCaption": true,
+    "image": "figures/p303.png"
+  },
+  {
+    "id": "7.7",
+    "page": 334,
+    "caption": "The data types shown in Figure 7.7 display different tradeoffs, as illustrated with different repre-",
+    "isCaption": false,
+    "image": "figures/p334.png"
+  },
+  {
+    "id": "8.1",
+    "page": 319,
+    "caption": "Figure 8.1 – Inference process with decoder-only models. We provide “I have a dream” as",
+    "isCaption": true,
+    "image": "figures/p319.png"
+  },
+  {
+    "id": "8.2",
+    "page": 321,
+    "caption": "You can see an illustration of this technique in Figure 8.2:",
+    "isCaption": true,
+    "image": "figures/p321.png"
+  },
+  {
+    "id": "8.3",
+    "page": 324,
+    "caption": "Figure 8.3 – Illustration of traditional decoding (left) and speculative decoding (right)",
+    "isCaption": true,
+    "image": "figures/p324.png"
+  },
+  {
+    "id": "8.4",
+    "page": 328,
+    "caption": "Figure 8.4 – Illustration of data parallelism with four GPUs",
+    "isCaption": true,
+    "image": "figures/p328.png"
+  },
+  {
+    "id": "8.5",
+    "page": 329,
+    "caption": "Figure 8.5 – Illustration of pipeline parallelism with four GPUs",
+    "isCaption": true,
+    "image": "figures/p329.png"
+  },
+  {
+    "id": "8.6",
+    "page": 330,
+    "caption": "Figure 8.6 – Illustration of pipeline parallelism with micro-batching.",
+    "isCaption": true,
+    "image": "figures/p330.png"
+  },
+  {
+    "id": "8.7",
+    "page": 331,
+    "caption": "Figure 8.7 – Illustration of column-wise tensor parallelism in an MLP layer (W)",
+    "isCaption": true,
+    "image": "figures/p331.png"
+  },
+  {
+    "id": "8.8",
+    "page": 332,
+    "caption": "Figure 8.8 – Illustration of the different model parallelism techniques",
+    "isCaption": true,
+    "image": "figures/p332.png"
+  },
+  {
+    "id": "8.9",
+    "page": 334,
+    "caption": "Figure 8.9 – Comparison the between FP32, FP16, and BF16 formats",
+    "isCaption": true,
+    "image": "figures/p334.png"
+  },
+  {
+    "id": "8.10",
+    "page": 335,
+    "caption": "zation, can be applied to convert FP32, FP16, or BF16 weights to INT8, as illustrated in Figure 8.10:",
+    "isCaption": true,
+    "image": "figures/p335.png"
+  },
+  {
+    "id": "8.11",
+    "page": 337,
+    "caption": "an example of outliers in Figure 8.11:",
+    "isCaption": true,
+    "image": "figures/p337.png"
+  },
+  {
+    "id": "8.12",
+    "page": 170,
+    "caption": "Figure 8.12 shows the DAG of the RAG feature pipeline, where you can follow all the pipeline steps",
+    "isCaption": false,
+    "image": "figures/p170.png"
+  },
+  {
+    "id": "8.16",
+    "page": 180,
+    "caption": "As we can see in Figure 8.16, we will repeat the same logic for the Chunk and EmbeddedChunk base",
+    "isCaption": false,
+    "image": "figures/p180.png"
+  },
+  {
+    "id": "8.17",
+    "page": 191,
+    "caption": "handler, as shown in Figure 8.17. In total, we will have nine Handler classes that follow the next",
+    "isCaption": true,
+    "image": "figures/p191.png"
+  },
+  {
+    "id": "9.1",
+    "page": 348,
+    "caption": "Figure 9.1: RAG inference pipeline architecture",
+    "isCaption": true,
+    "image": "figures/p348.png"
+  },
+  {
+    "id": "9.2",
+    "page": 368,
+    "caption": "Figure 9.2: Search logic of the RAG retrieval module",
+    "isCaption": true,
+    "image": "figures/p368.png"
+  },
+  {
+    "id": "9.3",
+    "page": 369,
+    "caption": "Figure 9.3: Processing the results flow of the RAG retrieval module",
+    "isCaption": true,
+    "image": "figures/p369.png"
+  },
+  {
+    "id": "9.4",
+    "page": 377,
+    "caption": "Figure 9.4: Routing and memory examples",
+    "isCaption": true,
+    "image": "figures/p377.png"
+  },
+  {
+    "id": "10.1",
+    "page": 389,
+    "caption": "Figure 10.1: The three fundamental architectures of inference deployment types",
+    "isCaption": true,
+    "image": "figures/p389.png"
+  },
+  {
+    "id": "10.2",
+    "page": 393,
+    "caption": "Figure 10.2: Monolithic versus microservices architecture in model serving",
+    "isCaption": true,
+    "image": "figures/p393.png"
+  },
+  {
+    "id": "10.3",
+    "page": 395,
+    "caption": "Figure 10.3: Scaling microservices independently based on compute requirements",
+    "isCaption": true,
+    "image": "figures/p395.png"
+  },
+  {
+    "id": "10.4",
+    "page": 398,
+    "caption": "Figure 10.4: Microservice deployment architecture of the LLM Twin’s inference pipeline",
+    "isCaption": true,
+    "image": "figures/p398.png"
+  },
+  {
+    "id": "10.5",
+    "page": 405,
+    "caption": "Figure 10.5: AWS SageMaker deployment steps",
+    "isCaption": true,
+    "image": "figures/p405.png"
+  },
+  {
+    "id": "10.6",
+    "page": 414,
+    "caption": "in the Inference column, click on the Endpoints button, as illustrated in Figure 10.6.",
+    "isCaption": true,
+    "image": "figures/p414.png"
+  },
+  {
+    "id": "10.7",
+    "page": 414,
+    "caption": "status, as seen in Figure 10.7. After clicking on it, you can look at the endpoint’s logs in CloudWatch",
+    "isCaption": true,
+    "image": "figures/p414.png"
+  },
+  {
+    "id": "10.8",
+    "page": 424,
+    "caption": "Figure 10.8: Autoscaling possible use cases",
+    "isCaption": true,
+    "image": "figures/p424.png"
+  },
+  {
+    "id": "11.1",
+    "page": 433,
+    "caption": "Figure 11.1: DevOps lifecycle steps",
+    "isCaption": true,
+    "image": "figures/p433.png"
+  },
+  {
+    "id": "11.2",
+    "page": 435,
+    "caption": "Figure 11.2: Relationship between data, model, and code changes",
+    "isCaption": true,
+    "image": "figures/p435.png"
+  },
+  {
+    "id": "11.3",
+    "page": 438,
+    "caption": "Figure 11.3: DS vs. MLE vs. MLOps",
+    "isCaption": true,
+    "image": "figures/p438.png"
+  },
+  {
+    "id": "11.4",
+    "page": 443,
+    "caption": "Figure 11.4: Example trace in the Langfuse UI",
+    "isCaption": true,
+    "image": "figures/p443.png"
+  },
+  {
+    "id": "11.5",
+    "page": 446,
+    "caption": "Figure 11.5: Infrastructure flow",
+    "isCaption": true,
+    "image": "figures/p446.png"
+  },
+  {
+    "id": "11.6",
+    "page": 449,
+    "caption": "Figure 11.6: Qdrant cluster dashboard example after being populated with two collections.",
+    "isCaption": true,
+    "image": "figures/p449.png"
+  },
+  {
+    "id": "11.7",
+    "page": 456,
+    "caption": "Figure 11.7: AWS ECR example",
+    "isCaption": true,
+    "image": "figures/p456.png"
+  },
+  {
+    "id": "11.8",
+    "page": 456,
+    "caption": "Figure 11.8. Also, you can copy the ECR URL to fill the AWS_ECR_URL variable from the main AWS",
+    "isCaption": true,
+    "image": "figures/p456.png"
+  },
+  {
+    "id": "11.9",
+    "page": 457,
+    "caption": "Figure 11.9: AWS ECR repository example after the Docker image is pushed",
+    "isCaption": true,
+    "image": "figures/p457.png"
+  },
+  {
+    "id": "11.10",
+    "page": 458,
+    "caption": "the ZenML dashboard, you can visualize the latest state of the pipeline, as seen in Figure 11.10.",
+    "isCaption": true,
+    "image": "figures/p458.png"
+  },
+  {
+    "id": "11.11",
+    "page": 459,
+    "caption": "step, and the logs for monitoring and debugging, as illustrated in Figure 11.11:",
+    "isCaption": true,
+    "image": "figures/p459.png"
+  },
+  {
+    "id": "11.12",
+    "page": 460,
+    "caption": "section, as shown in Figure 11.12.",
+    "isCaption": true,
+    "image": "figures/p460.png"
+  },
+  {
+    "id": "11.13",
+    "page": 462,
+    "caption": "Figure 11.13: SageMaker—ml.t3.medium expected quotas",
+    "isCaption": true,
+    "image": "figures/p462.png"
+  },
+  {
+    "id": "11.14",
+    "page": 464,
+    "caption": "Figure 11.14: CI/CD pipelines flow",
+    "isCaption": true,
+    "image": "figures/p464.png"
+  },
+  {
+    "id": "11.15",
+    "page": 470,
+    "caption": "Figure 11.15: GitHub Actions CI pipeline run example",
+    "isCaption": true,
+    "image": "figures/p470.png"
+  },
+  {
+    "id": "11.16",
+    "page": 473,
+    "caption": "Figure 11.16: GitHub Actions CD pipeline run example",
+    "isCaption": true,
+    "image": "figures/p473.png"
+  },
+  {
+    "id": "11.17",
+    "page": 474,
+    "caption": "Figure 11.17: Configuring only repository name",
+    "isCaption": true,
+    "image": "figures/p474.png"
+  },
+  {
+    "id": "11.18",
+    "page": 475,
+    "caption": "Figure 11.18: GitHub Actions secrets",
+    "isCaption": true,
+    "image": "figures/p475.png"
+  },
+  {
+    "id": "11.19",
+    "page": 476,
+    "caption": "Figure 11.19: CT pipeline",
+    "isCaption": true,
+    "image": "figures/p476.png"
+  },
+  {
+    "id": "11.20",
+    "page": 479,
+    "caption": "pipeline (which we want to avoid), as illustrated in Figure 11.20. Usually, you want to keep each",
+    "isCaption": true,
+    "image": "figures/p479.png"
+  },
+  {
+    "id": "11.21",
+    "page": 483,
+    "caption": "Figure 11.21: Inference pipeline serving architecture",
+    "isCaption": true,
+    "image": "figures/p483.png"
+  }
+]
