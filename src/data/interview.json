@@ -1,104 +1,101 @@
 {
   "1": [
-    {
-      "id": "q1-fti-why",
-      "q": "Why does the book argue every ML system can be reduced to feature, training, and inference pipelines? What does that buy you that a monolithic design doesn't?",
-      "a": "Splitting along FTI gives each pipeline its own stable interface (features land in a feature store, models in a registry, inference reads both), so teams can own pieces independently, scale them differently, and swap implementations without touching the others. A monolith couples feature creation, training, and serving into one unit you can't split, share, or scale.",
-      "page": 42,
-      "level": "core"
-    },
-    {
-      "id": "q1-monolith-fail",
-      "q": "What specific problem does a monolithic batch pipeline solve, and why is it still rejected here?",
-      "a": "It fixes training–serving skew (the same code computes features for both), but it can't be split across teams, can't stream, and forces retraining/serving to live together — so it doesn't scale organizationally or operationally.",
-      "page": 39,
-      "level": "core"
-    },
-    {
-      "id": "q1-realtime-state",
-      "q": "In a stateless real-time system, why is 'pass the whole client state in the request' a trap, and what does the feature store fix?",
-      "a": "It forces the client to transmit the entire state (history included) on every call just to compute features, which is fragile and heavy. A feature store lets inference look up precomputed features by ID, so the request only needs an identifier.",
-      "page": 40,
-      "level": "applied"
-    },
-    {
-      "id": "q1-feature-store-role",
-      "q": "What exactly connects the three FTI pipelines, and why those two stores specifically?",
-      "a": "Two shared stores: the feature store (feature pipeline writes, training + inference read) and the model registry (training writes, inference reads). They are the only contracts between pipelines, which is what keeps the interfaces stable as complexity grows.",
-      "page": 44,
-      "level": "core"
-    },
-    {
-      "id": "q1-mvp",
-      "q": "How does the book frame the MVP decision, and why frame it that way for this project?",
-      "a": "As maximizing product value relative to effort/resources given a tiny team — so you build the smallest first iteration that's genuinely valuable rather than the most complete one.",
-      "page": 36,
-      "level": "applied"
-    },
-    {
-      "id": "q1-model-agnostic",
-      "q": "Why insist the architecture be data-centric and model-agnostic, and what does that enable later in the build?",
-      "a": "Keeping data at the centre and the model swappable means any LLM exposing a fine-tuning interface can be dropped in, so you can change base models (OpenAI/Mistral/Llama) without re-architecting — important because later chapters fine-tune and align open models.",
-      "page": 35,
-      "level": "core"
-    },
-    {
-      "id": "q1-scaling",
-      "q": "Each FTI pipeline scales differently. How, and why does the split make that possible?",
-      "a": "Data/feature pipelines scale horizontally on CPU/RAM, training scales vertically with more GPUs, and inference scales horizontally with request load. Because the pipelines are decoupled, each can scale on its own axis instead of scaling the whole monolith.",
-      "page": 52,
-      "level": "applied"
-    }
+    { "id": "q1-fti-why", "q": "Why does the book argue every ML system can be reduced to feature, training, and inference pipelines? What does that buy you that a monolithic design doesn't?", "a": "Each pipeline gets its own stable interface (features → feature store, models → registry, inference reads both), so teams own pieces independently, scale them differently, and swap implementations without touching the others. A monolith couples feature creation, training and serving into one unit you can't split, share, or scale.", "page": 42, "level": "core" },
+    { "id": "q1-monolith-fail", "q": "What specific problem does a monolithic batch pipeline solve, and why is it still rejected here?", "a": "It fixes training–serving skew (same code computes features for both), but it can't be split across teams, can't stream, and forces retraining and serving to live together — so it doesn't scale organizationally or operationally.", "page": 39, "level": "core" },
+    { "id": "q1-realtime-state", "q": "In a stateless real-time system, why is 'pass the whole client state in the request' a trap, and what fixes it?", "a": "It forces the client to transmit the entire state (history included) on every call just to compute features. A feature store lets inference look up precomputed features by ID, so the request only needs an identifier.", "page": 40, "level": "applied" },
+    { "id": "q1-feature-store-role", "q": "What exactly connects the three FTI pipelines, and why those two stores specifically?", "a": "Two shared stores: the feature store (feature pipeline writes; training + inference read) and the model registry (training writes; inference reads). They are the only contracts between pipelines, which keeps interfaces stable as complexity grows.", "page": 44, "level": "core" },
+    { "id": "q1-mvp", "q": "How does the book frame the MVP decision, and why frame it that way for this project?", "a": "As maximizing product value relative to effort/resources given a tiny team — so you build the smallest genuinely valuable iteration rather than the most complete one.", "page": 36, "level": "applied" },
+    { "id": "q1-model-agnostic", "q": "Why insist the architecture be data-centric and model-agnostic, and what does that enable later?", "a": "Keeping data central and the model swappable means any LLM exposing a fine-tuning interface can drop in, so you can change base models without re-architecting — vital because later chapters fine-tune and align open models.", "page": 35, "level": "core" },
+    { "id": "q1-scaling", "q": "Each FTI pipeline scales differently. How, and why does the split make that possible?", "a": "Data/feature pipelines scale horizontally on CPU/RAM, training scales vertically with more GPUs, inference scales horizontally with request load. Because the pipelines are decoupled, each scales on its own axis instead of scaling the whole monolith.", "page": 52, "level": "applied" }
   ],
   "2": [
-    {
-      "id": "q2-poetry-lock",
-      "q": "Why does the book prefer Poetry's lock file over a plain requirements.txt, and what failure does it prevent?",
-      "a": "The lock file pins exact versions of dependencies AND sub-dependencies, so every install is identical — preventing 'works on my machine' drift that loose version ranges allow.",
-      "page": 57,
-      "level": "core"
-    },
-    {
-      "id": "q2-zenml-stack",
-      "q": "What is ZenML's 'stack' abstraction and why is it the reason ZenML was chosen over Airflow/Prefect/Dagster?",
-      "a": "A stack lets the same pipeline code run against swappable infrastructure (e.g. SageMaker orchestrator, S3 storage, ECR registry) with no cloud-specific code, so you aren't vendor-locked — a feature the other orchestrators don't offer.",
-      "page": 61,
-      "level": "core"
-    },
-    {
-      "id": "q2-artifact-vs-metadata",
-      "q": "Distinguish a ZenML artifact from its metadata. Why attach metadata at all?",
-      "a": "An artifact is any versioned file a step produces (dataset, model, logs); metadata is precomputed info attached to it (size, categories, split ratios) so you can understand what's inside without downloading it — key for discovery and reproducibility.",
-      "page": 68,
-      "level": "applied"
-    },
-    {
-      "id": "q2-step-pipeline",
-      "q": "How do @step and @pipeline shape how you must write code, and why does that decoupling matter?",
-      "a": "A @pipeline is a high-level function that wires @step units; to integrate you write modular, single-purpose functions and keep app logic in a separate module. That lets you swap ZenML for another orchestrator (or reuse the logic in an API) by changing only the ZenML wrapper.",
-      "page": 66,
-      "level": "applied"
-    },
-    {
-      "id": "q2-hf-registry",
-      "q": "ZenML, Comet, and SageMaker all offer model registries. Why pick Hugging Face here?",
-      "a": "Purely for its ecosystem: easy shareability of the fine-tuned models and broad integration (e.g. Unsloth for fine-tuning, SageMaker for inference). You normally pick the registry that integrates best with your tooling.",
-      "page": 60,
-      "level": "core"
-    },
-    {
-      "id": "q2-sagemaker-vs-bedrock",
-      "q": "Why choose SageMaker over the simpler, cheaper Bedrock for this book?",
-      "a": "Bedrock is serverless with pre-trained models and simple per-call pricing but limited customization. SageMaker exposes the full train/deploy engineering surface (custom models, GPU clusters, endpoints) the book exists to teach — at the cost of pay-as-you-go infra you must autoscale/tear down.",
-      "page": 80,
-      "level": "core"
-    },
-    {
-      "id": "q2-prompt-logging",
-      "q": "Why can't you monitor LLM prompts with standard logging tools, and what does Opik provide instead?",
-      "a": "Prompts form chained, unstructured traces where each call depends on prior ones, so flat text logs don't capture the structure. Opik groups these into trace dashboards built for debugging/monitoring LLM apps.",
-      "page": 75,
-      "level": "applied"
-    }
+    { "id": "q2-poetry-lock", "q": "Why does the book prefer Poetry's lock file over a plain requirements.txt, and what failure does it prevent?", "a": "The lock file pins exact versions of dependencies AND sub-dependencies, so every install is identical — preventing 'works on my machine' drift that loose version ranges allow.", "page": 57, "level": "core" },
+    { "id": "q2-zenml-stack", "q": "What is ZenML's 'stack' abstraction and why is it the reason ZenML was chosen over Airflow/Prefect/Dagster?", "a": "A stack lets the same pipeline code run against swappable infrastructure (e.g. SageMaker orchestrator, S3 storage, ECR registry) with no cloud-specific code, so you aren't vendor-locked — a feature the others don't offer.", "page": 61, "level": "core" },
+    { "id": "q2-artifact-vs-metadata", "q": "Distinguish a ZenML artifact from its metadata. Why attach metadata at all?", "a": "An artifact is any versioned file a step produces (dataset, model, logs); metadata is precomputed info attached to it (size, categories, split ratios) so you understand it without downloading — key for discovery and reproducibility.", "page": 68, "level": "applied" },
+    { "id": "q2-step-pipeline", "q": "How do @step and @pipeline shape how you must write code, and why does that decoupling matter?", "a": "A @pipeline wires @step units, so you write modular single-purpose functions and keep app logic in a separate module. That lets you swap ZenML for another orchestrator (or reuse the logic in an API) by changing only the ZenML wrapper.", "page": 66, "level": "applied" },
+    { "id": "q2-hf-registry", "q": "ZenML, Comet, and SageMaker all offer model registries. Why pick Hugging Face here?", "a": "Purely for its ecosystem: easy shareability of the fine-tuned models and broad integration (Unsloth for fine-tuning, SageMaker for inference). You normally pick the registry that integrates best with your tooling.", "page": 60, "level": "core" },
+    { "id": "q2-sagemaker-vs-bedrock", "q": "Why choose SageMaker over the simpler, cheaper Bedrock for this book?", "a": "Bedrock is serverless with pre-trained models and simple per-call pricing but limited customization. SageMaker exposes the full train/deploy engineering surface the book exists to teach — at the cost of pay-as-you-go infra you must autoscale and tear down.", "page": 80, "level": "core" },
+    { "id": "q2-prompt-logging", "q": "Why can't you monitor LLM prompts with standard logging tools, and what does Opik provide instead?", "a": "Prompts form chained, unstructured traces where each call depends on prior ones, so flat text logs miss the structure. Opik groups these into trace dashboards built for debugging/monitoring LLM apps.", "page": 75, "level": "applied" }
+  ],
+  "3": [
+    { "id": "q3-categories", "q": "Why does the ETL reduce every source to just three data categories (article, repository, post), and what does that buy when you add a new source?", "a": "A new source becomes just a new crawler that maps to an existing category — the storage schema (one MongoDB collection per category) and all downstream processing stay unchanged. It decouples sources from the data model.", "page": 87, "level": "core" },
+    { "id": "q3-decouple", "q": "How do the ETL and feature pipelines communicate, and why keep them fully decoupled through MongoDB?", "a": "They never call each other: the ETL writes raw data to MongoDB; the feature pipeline reads it on its own schedule. That allows independent scheduling/scaling. For big data you'd swap MongoDB for Snowflake/BigQuery.", "page": 89, "level": "applied" },
+    { "id": "q3-dispatcher", "q": "What problem does the CrawlerDispatcher solve, and which design pattern lets its registrations chain fluently?", "a": "It routes each URL to the right crawler by matching the domain against regex keys (defaulting to CustomArticleCrawler). It uses the builder pattern: each register_*() returns self, so calls chain.", "page": 95, "level": "applied" },
+    { "id": "q3-selenium", "q": "Why do the Medium/LinkedIn crawlers need Selenium while the GitHub crawler doesn't?", "a": "Medium/LinkedIn are login-gated and lazy-load content via infinite scroll, so they need a headless browser to log in, scroll, and render. GitHub is just a git clone + file-tree walk — no browser needed.", "page": 99, "level": "core" },
+    { "id": "q3-odm", "q": "What is the ODM, and why build NoSQLBaseDocument on Pydantic + Generic + ABC?", "a": "The ODM (Object-Document Mapping) maps Python objects to MongoDB JSON documents — the NoSQL analog of an ORM — carrying read/write ops. Pydantic gives validation, Generic[T] typed subclasses, ABC an abstract base; it adds a UUID id and Mongo (de)serialization.", "page": 112, "level": "core" },
+    { "id": "q3-getorcreate", "q": "Walk through get_or_create, and why does save() map id → _id when writing to MongoDB?", "a": "find_one by filter; if a doc exists, rebuild it via from_mongo; else create and save. to_mongo() stringifies UUIDs and renames id → _id because MongoDB's primary-key field is _id.", "page": 114, "level": "applied" }
+  ],
+  "4": [
+    { "id": "q4-rag-why", "q": "What two LLM limitations does RAG fix, and why is it cheaper than fine-tuning for keeping data fresh?", "a": "It fixes bounded parametrized knowledge (can't see private/new/costly data) and hallucination. RAG injects retrieved context at query time as the source of truth, so you don't retrain when data changes.", "page": 130, "level": "core" },
+    { "id": "q4-skew", "q": "Why must the user query be preprocessed and embedded exactly like the documents were?", "a": "Retrieval compares query and chunk vectors in the same space; different preprocessing or a different embedding model causes training–serving skew, making similarities meaningless. The same EmbeddingDispatcher is reused at ingest and query time.", "page": 134, "level": "core" },
+    { "id": "q4-small-to-big", "q": "Explain small-to-big chunking and why it decouples retrieval from generation context.", "a": "Embed a small, focused span for sharp, low-noise retrieval, but store a wider window around it in metadata. At answer time the LLM gets the bigger context — best of both: precise retrieval, rich generation.", "page": 149, "level": "applied" },
+    { "id": "q4-bi-cross", "q": "Bi-encoder vs cross-encoder — why use each at a different RAG stage?", "a": "A bi-encoder embeds query and document separately, so cosine similarity is fast — used for first-pass retrieval. A cross-encoder feeds query + document together through BERT, more accurate but too costly for every candidate, so it only re-ranks the top ones.", "page": 154, "level": "core" },
+    { "id": "q4-batch-why", "q": "Why does the LLM Twin use a batch (not streaming) feature pipeline?", "a": "Syncing the warehouse and feature store tolerates a few minutes' delay, the data is only thousands of records, and batch is ~2× simpler and cheaper to build/debug/maintain. Start batch, move to streaming only if real-time is needed.", "page": 162, "level": "applied" },
+    { "id": "q4-cdc", "q": "What is Change Data Capture, and what are the trade-offs of its three detection patterns?", "a": "CDC replicates CRUD operations to keep two stores in sync. Timestamp-based (simple, but misses deletes), trigger-based (full tracking, write overhead), log-based (lowest overhead, captures all CRUD, but vendor-specific).", "page": 166, "level": "applied" },
+    { "id": "q4-factory-strategy", "q": "Why combine the factory and strategy patterns for cleaning/chunking/embedding handlers?", "a": "The data category is known only at runtime; the abstract factory creates the right handler per category, each handler is the strategy the dispatcher executes. Result: polymorphism, DRY (a new category extends only the factory), and no if/else sprawl.", "page": 191, "level": "applied" },
+    { "id": "q4-ovm", "q": "What is the OVM, and what do to_point() and from_record() do?", "a": "The OVM (object-vector mapping) is the vector-DB analog of an ORM, mapping Pydantic models ↔ Qdrant. to_point() turns an instance into a PointStruct(id, vector, payload) for upsert; from_record() rebuilds an entity from a Qdrant Record.", "page": 184, "level": "core" }
+  ],
+  "5": [
+    { "id": "q5-sft-what", "q": "What does SFT change about a base model, and why isn't a pre-trained base model already useful as an assistant?", "a": "A base model only predicts the next token. SFT re-trains it on instruction-answer pairs so it follows instructions in a chat format and adapts its knowledge to targeted tasks or domains.", "page": 206, "level": "core" },
+    { "id": "q5-quantity", "q": "How many samples do general vs task vs domain models need, and what is LIMA's lesson?", "a": "General ≈1M+ (Llama 3 used ~10M), task-specific 100–100k, domain varies. LIMA showed a big (~70B) model can fine-tune on as few as ~1,000 high-quality samples; smaller models need more just to learn the chat template.", "page": 210, "level": "applied" },
+    { "id": "q5-lora-mem", "q": "Why does LoRA slash trainable parameters, and how does QLoRA cut memory further?", "a": "Full fine-tuning is ~16 bytes/param (~112 GB for 7B) and destructive. LoRA freezes W and trains a low-rank update B·A (W' = W + B·A) — far fewer params, non-destructive, swappable. QLoRA quantizes the frozen base to 4-bit NF4 (plus double quantization, paged optimizers), cutting peak memory up to ~75%.", "page": 244, "level": "core" },
+    { "id": "q5-eff-batch", "q": "How is effective batch size computed, and why use gradient accumulation?", "a": "Effective batch = per-device batch × accumulation steps × number of GPUs. Accumulation fakes a large batch by summing gradients over mini-batches — more stable gradients without the memory cost of a literally large batch.", "page": 246, "level": "applied" },
+    { "id": "q5-backtranslation", "q": "How is an instruction dataset generated from the scarce, unstructured crawled articles?", "a": "Clean each article (regex), chunk to 1,000–2,000 chars, then use GPT-4o-mini in JSON mode (backtranslation/rephrasing) to produce multiple instruction-answer pairs per chunk that imitate the author's style, then rule-filter them.", "page": 226, "level": "applied" },
+    { "id": "q5-chat-template", "q": "Why does every whitespace in a chat template matter, and why use Jinja templates?", "a": "Special tokens (e.g. ChatML's <|im_start|>…<|im_end|>) structure each turn; one wrong character or space breaks tokenization. Reliable Jinja templates (Transformers) avoid that and share a single template across training and inference.", "page": 239, "level": "core" }
+  ],
+  "6": [
+    { "id": "q6-triple", "q": "What three parts make a DPO sample, and why is the rejected answer as important as the chosen one?", "a": "Instruction + chosen (preferred) + rejected. The rejected answer defines the behavior to eliminate; DPO raises the probability of the chosen and lowers the rejected.", "page": 260, "level": "core" },
+    { "id": "q6-no-judge", "q": "In Chapter 6's preference-data pipeline, why is no LLM judge needed to label chosen vs rejected?", "a": "The chunk extracted verbatim from the source is treated as the ground-truth chosen answer, and the model's generated answer is the rejected one — the triple is constructed by design, so no judging step is required.", "page": 267, "level": "applied" },
+    { "id": "q6-dpo-loss", "q": "How does DPO avoid PPO's separate reward model and RL loop?", "a": "DPO derives a closed-form optimal policy, turning preference learning into a binary cross-entropy loss on the model's own probabilities — raise chosen, lower rejected, stay near a frozen reference — so no reward model or RL loop is needed.", "page": 277, "level": "core" },
+    { "id": "q6-beta", "q": "What does DPO's beta control, and why set it relatively high (0.5) for the LLM Twin?", "a": "Beta controls how strongly the trained model is kept near the frozen reference. A higher beta keeps it close to the SFT model — here, to avoid drifting into overly formal language while still applying the style nudge.", "page": 283, "level": "applied" },
+    { "id": "q6-dpo-vs-ppo", "q": "When would you still prefer PPO-style RLHF over DPO?", "a": "PPO has a higher performance ceiling for very large runs, but it's complex and unstable. DPO is simpler, more stable and efficient and captures most of the benefit — so PPO only wins at large scale with the resources to tame it.", "page": 279, "level": "core" },
+    { "id": "q6-style-shift", "q": "What concrete style difference between the chosen and rejected answers does DPO exploit here?", "a": "The chosen (extracted) answers sound more casual; the rejected (generated) answers are more formal. DPO pushes the model toward the casual voice — exactly the desired LLM Twin style.", "page": 274, "level": "applied" }
+  ],
+  "7": [
+    { "id": "q7-mcq", "q": "What are the two ways to score multiple-choice QA, and the trade-off between them?", "a": "Text generation — the model writes A/B/C/D and you check it against the answer (mimics real use, more discriminative) — versus log-likelihood, comparing the model's probabilities over the answer texts (cheaper, less like real usage).", "page": 298, "level": "applied" },
+    { "id": "q7-judge-bias", "q": "Name three biases of an LLM-as-a-judge and how to mitigate each.", "a": "Position bias (favours the first/A — randomize order), length/verbosity bias (favours long answers — normalize or few-shot calibrate), and family bias (favours its own model family — use a jury of different models).", "page": 300, "level": "core" },
+    { "id": "q7-ragas", "q": "What four relationships does Ragas measure to evaluate a RAG system?", "a": "Faithfulness (answer ↔ context), answer relevancy (answer ↔ question), context precision (question ↔ context ranking), and context recall (context ↔ ground truth).", "page": 302, "level": "core" },
+    { "id": "q7-rag-dims", "q": "Why must you evaluate a RAG system beyond the model, and on what axes?", "a": "The system can fail even with a good model. You evaluate retrieval accuracy (did it fetch the right info?), integration quality (did it use the context well?), and factuality + relevance (is the answer grounded and on-topic?).", "page": 301, "level": "applied" },
+    { "id": "q7-twin-eval", "q": "How is TwinLlama evaluated, and what two axes does the judge score?", "a": "Feed test instructions to each model, generate answers with vLLM, then have GPT-4o-mini judge them on accuracy (factual correctness) and style (casual blog voice vs formal) on a 1–3 scale.", "page": 305, "level": "applied" },
+    { "id": "q7-results", "q": "What did the evaluation reveal about TwinLlama-DPO versus the Llama-Instruct baseline?", "a": "Llama-Instruct led on accuracy (trained on far more data) but was verbose with low style; TwinLlama-DPO led on style (the casual voice) with comparable accuracy — DPO simplified the SFT style without losing content.", "page": 315, "level": "core" }
+  ],
+  "8": [
+    { "id": "q8-bottleneck", "q": "In decoder-only inference, which step is the bottleneck and why?", "a": "Token generation: it's inherently sequential (one token at a time, each depending on the last). Tokenize + embed and the prompt's key/value computation parallelize well, but generation can't.", "page": 320, "level": "core" },
+    { "id": "q8-kv", "q": "What does the KV cache save, and what is its cost?", "a": "It stores past tokens' key/value pairs so each new token only computes and appends its own K/V instead of recomputing all of them — a big speedup — but the cache grows large (over 2 GB for a 7B model at long context).", "page": 321, "level": "core" },
+    { "id": "q8-speculative", "q": "How does speculative decoding achieve a 3–4× speedup?", "a": "A small draft model proposes 5–10 tokens in one step; the large model verifies them in a single pass and keeps the longest matching prefix. With ~90% agreement this turns several sequential steps into one — using otherwise idle compute.", "page": 324, "level": "applied" },
+    { "id": "q8-parallelism", "q": "Distinguish data, pipeline, and tensor parallelism, and when each fits.", "a": "Data parallelism replicates the whole model and splits the data (model must fit one GPU; mostly training). Pipeline parallelism splits layers across GPUs (saves memory, but creates idle 'bubbles'). Tensor parallelism splits the weight matrices (low latency, but needs fast interconnects).", "page": 331, "level": "applied" },
+    { "id": "q8-ptq-qat", "q": "PTQ vs QAT — what's the trade-off?", "a": "Post-Training Quantization converts an already-trained model directly (easy, but some quality loss). Quantization-Aware Training quantizes during training (better quality, but more compute).", "page": 333, "level": "core" },
+    { "id": "q8-llmint8", "q": "Why does LLM.int8() keep some values in FP16 instead of quantizing everything to INT8?", "a": "About 0.1% of values are outlier features that wreck naive quantization. LLM.int8() multiplies those outlier columns in FP16 and the rest in INT8, then recombines — ~2× smaller with <1% degradation (but ~20% slower).", "page": 337, "level": "applied" }
+  ],
+  "9": [
+    { "id": "q9-where", "q": "Why does most of the RAG-inference code live in the retrieval step rather than generation?", "a": "Augmentation is just a prompt template and generation is a single LLM call. The hard, code-heavy work is retrieval — wrangling the data (expansion, self-query, filtering, reranking) to fetch the most relevant chunks.", "page": 347, "level": "core" },
+    { "id": "q9-expansion", "q": "What problem does query expansion solve, and what is its cost?", "a": "A single query covers only a small region of the embedding space; expanding it into N LLM-generated variations covers more relevant ground — at the cost of running N searches, so you parallelize them.", "page": 354, "level": "applied" },
+    { "id": "q9-selfquery", "q": "What does self-querying extract, and how is it used in the search?", "a": "An LLM extracts metadata (here the author's name) from the natural-language query; it becomes an explicit Qdrant filter (a FieldCondition on author_id) applied before similarity search — narrowing the pool to contextually correct chunks.", "page": 358, "level": "applied" },
+    { "id": "q9-filtered", "q": "Why apply metadata filters before vector search rather than after?", "a": "Plain vector search ranks only by numerical proximity (can return contextually wrong matches) and, at scale, scans the whole space. Filtering first shrinks the search to aligned chunks, improving both accuracy and latency.", "page": 362, "level": "core" },
+    { "id": "q9-pipeline", "q": "Trace ContextRetriever.search() end to end.", "a": "Expand + self-query the input; for each of N queries run 3 filtered searches (article/post/repository, ≤ K/3 each) concurrently; aggregate the ≤ N×K chunks; deduplicate; cross-encoder rerank; keep the top K as the RAG context.", "page": 368, "level": "core" },
+    { "id": "q9-memory", "q": "What are the two ways to bound conversation memory, and the trade-off?", "a": "Keep only the latest K turns (simple, but loses older context), or keep a running summary plus the latest K turns (retains the gist of earlier history at the cost of maintaining a summary).", "page": 377, "level": "applied" }
+  ],
+  "10": [
+    { "id": "q10-three", "q": "What are the three deployment architectures, and when does each fit?", "a": "Online real-time (synchronous HTTP, client waits — chatbots), asynchronous (queued, client polls or is notified — absorbs traffic spikes), and batch transform (pull from storage, bulk process, store results — cheapest but always delayed).", "page": 389, "level": "core" },
+    { "id": "q10-latency-throughput", "q": "How can higher per-request latency actually mean higher throughput?", "a": "With batching, processing 20 requests together in 100 ms = 200 RPS, beating 10 ms-per-request unbatched (100 RPS). Batching trades a little single-request latency for much higher aggregate throughput.", "page": 386, "level": "applied" },
+    { "id": "q10-micro", "q": "Why split the LLM into its own microservice instead of one monolith?", "a": "The LLM needs GPU; the business/RAG logic is CPU/I/O-bound. A monolith can't scale them apart (the GPU idles during business logic). Microservices scale each on its own hardware and let you upgrade the GPU box (A10G → A100) without touching the API.", "page": 397, "level": "core" },
+    { "id": "q10-sagemaker", "q": "What are the four parts of a SageMaker deployment?", "a": "The endpoint (the API), the model (trained artifact), the endpoint configuration (hardware/instances), and the inference component (binds model + config to the endpoint).", "page": 400, "level": "applied" },
+    { "id": "q10-autoscale", "q": "What must you configure for autoscaling, and what does the cooldown period prevent?", "a": "Register a scalable target (what to scale + min/max bounds), then a scaling policy (e.g. TargetTrackingScaling keeping GPU utilization ~70%). The cooldown pauses between scaling events to prevent rapid, costly fluctuations.", "page": 426, "level": "applied" },
+    { "id": "q10-strategy", "q": "Why does the LLM Twin specifically choose online real-time + microservices?", "a": "It's a low-latency chatbot (real-time), and the GPU-hungry LLM and CPU-bound business logic have different scaling needs — so they're split. Keeping modules decoupled means the split (and GPU upgrades) stay cheap.", "page": 397, "level": "core" }
+  ],
+  "11": [
+    { "id": "q11-mlops-trigger", "q": "Going from DevOps to MLOps, what changes about what can trigger a build?", "a": "In DevOps everything centers on code; in MLOps a build can be triggered by a change in code, data, OR model — and changing one affects the others, so all three are versioned and tracked.", "page": 435, "level": "core" },
+    { "id": "q11-six", "q": "Name the six MLOps principles.", "a": "Automation (CT + CI/CD), versioning (code/model/data), experiment tracking, testing (data + models), monitoring (drift, metrics), and reproducibility (seeds, tracked configs).", "page": 437, "level": "core" },
+    { "id": "q11-ci-cd", "q": "What does the CI pipeline check versus what the CD pipeline does?", "a": "CI (on a PR): a QA job (Ruff formatting + linting, gitleaks secret scan) and a test job (Pytest) — both must pass to merge. CD (on push to main): build the Docker image and push it to ECR tagged with the commit SHA and 'latest'.", "page": 464, "level": "applied" },
+    { "id": "q11-ct", "q": "What does the Continuous Training pipeline chain, and why was that automation natural here?", "a": "It chains data collection → feature → instruct dataset → training → deploy → inference. Designing around the FTI architecture and using ZenML from day 0 made chaining the pipelines straightforward.", "page": 476, "level": "applied" },
+    { "id": "q11-megapipeline", "q": "Why is the single end_to_end_data mega-pipeline described as an anti-pattern?", "a": "It compresses every step into one pipeline (done to fit ZenML's 3-pipeline free-trial cap), which is harder to understand, debug, and monitor. Normally you keep pipelines isolated and have each trigger the next.", "page": 479, "level": "core" },
+    { "id": "q11-opik", "q": "How does Opik's @track build a trace, and where in the system is monitoring added?", "a": "@track logs each decorated function's input/output and aggregates them into one trace for the chain. It's added in the business microservice (the FastAPI server that coordinates the flow) by decorating rag() and call_llm_service().", "page": 484, "level": "applied" }
+  ],
+  "12": [
+    { "id": "q12-automation", "q": "What are the three tiers of MLOps automation?", "a": "Manual process (a data scientist runs each step in notebooks), Continuous Training (an orchestrator retrains on triggers), and CI/CD (automatic build, test, and deploy of code, models, and pipelines).", "page": 490, "level": "core" },
+    { "id": "q12-versioning", "q": "Why version code, model, and data separately, and with what tools?", "a": "They change independently and each affects results, so each is tracked on its own: code with Git (commits + SemVer), the model via a registry (SemVer + metadata), and data with DVC or artifact systems, stored on S3.", "page": 492, "level": "applied" },
+    { "id": "q12-drift", "q": "Define data drift, target drift, and concept drift.", "a": "Data drift: the input distribution P(X) shifts. Target drift: the output distribution P(y) shifts. Concept drift: the learned input→output relationship P(y|X) becomes outdated.", "page": 498, "level": "core" },
+    { "id": "q12-detect", "q": "How do you detect drift when labels are delayed or unavailable?", "a": "Compare a reference window (a training-time baseline) with a test window (production) using hypothesis tests: KS for continuous features, chi-squared for categorical, and MMD on reduced embeddings for text.", "page": 501, "level": "applied" },
+    { "id": "q12-repro", "q": "What are the two requirements for reproducibility?", "a": "Always track the inputs (the dataset version and config that produced an asset), and fix a seed for ML's non-deterministic steps (random initialization, imputation) so the same input yields identical results.", "page": 503, "level": "core" }
   ]
 }
