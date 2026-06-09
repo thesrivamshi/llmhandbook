@@ -97,6 +97,33 @@ export default function Read() {
   const [leftView, setLeftView] = React.useState<LeftView>("original");
   const [mobilePane, setMobilePane] = React.useState<MobilePane>("page");
   const [zoom, setZoom] = React.useState(false);
+  const [focus, setFocus] = React.useState<boolean>(() => {
+    try {
+      return localStorage.getItem("vb-focus") === "1";
+    } catch {
+      return false;
+    }
+  });
+  const [isFull, setIsFull] = React.useState(false);
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("vb-focus", focus ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [focus]);
+
+  React.useEffect(() => {
+    const onFs = () => setIsFull(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else document.documentElement.requestFullscreen?.();
+  };
 
   const section = sectionForPage(page);
   const accent = accentForPage(page);
@@ -128,7 +155,7 @@ export default function Read() {
     }`;
 
   return (
-    <Layout>
+    <Layout immersive={focus}>
       {/* sticky reader toolbar */}
       <div className="sticky top-0 z-10 bg-paper/90 backdrop-blur border-b border-border px-4 sm:px-6 py-3">
         <div className="flex items-center gap-3 flex-wrap">
@@ -175,6 +202,28 @@ export default function Read() {
             </button>
             <button className={segBtn(mobilePane === "diagram")} onClick={() => setMobilePane("diagram")}>
               Diagram
+            </button>
+          </div>
+
+          {/* distraction-free reading: auto-hide sidebar + browser fullscreen */}
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setFocus((f) => !f)}
+              className={`hidden lg:inline-block px-3 py-1 text-[12.5px] rounded-lg border transition-colors ${
+                focus ? "font-semibold text-ink border-ink/30 bg-paper" : "text-ink2 border-border hover:bg-paper/70"
+              }`}
+              title="Focus mode: auto-hide the sidebar; move the mouse to the left edge to bring it back"
+              aria-pressed={focus}
+            >
+              {focus ? "◉ Focus" : "◌ Focus"}
+            </button>
+            <button
+              onClick={toggleFullscreen}
+              className="px-3 py-1 text-[12.5px] rounded-lg border border-border text-ink2 hover:bg-paper/70 transition-colors"
+              title="Toggle full screen"
+              aria-pressed={isFull}
+            >
+              {isFull ? "Exit ⤧" : "⛶ Full screen"}
             </button>
           </div>
         </div>

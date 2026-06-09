@@ -136,10 +136,25 @@ const SidebarBody: React.FC = () => {
   );
 };
 
-// Desktop: sticky left rail. Mobile: a collapsible panel.
-export const Sidebar: React.FC = () => (
+// Desktop: sticky left rail. Mobile: a collapsible panel. In `immersive` mode
+// the desktop rail becomes a fixed overlay that hides off-screen and slides in
+// when `revealed` (driven by the left-edge hot zone in Layout).
+export const Sidebar: React.FC<{ immersive?: boolean; revealed?: boolean; onHide?: () => void }> = ({
+  immersive = false,
+  revealed = false,
+  onHide,
+}) => (
   <>
-    <aside className="hidden lg:block w-72 shrink-0 border-r border-border bg-surface/70 sticky top-0 h-screen overflow-y-auto px-5 py-6">
+    <aside
+      onMouseLeave={immersive ? onHide : undefined}
+      className={
+        immersive
+          ? `hidden lg:block w-72 fixed left-0 top-0 h-screen overflow-y-auto px-5 py-6 z-40 border-r border-border bg-surface transition-transform duration-200 ${
+              revealed ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+            }`
+          : "hidden lg:block w-72 shrink-0 border-r border-border bg-surface/70 sticky top-0 h-screen overflow-y-auto px-5 py-6"
+      }
+    >
       <SidebarBody />
     </aside>
     <details className="lg:hidden border-b border-border bg-surface px-4 py-3">
