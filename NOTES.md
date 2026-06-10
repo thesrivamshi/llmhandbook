@@ -50,6 +50,18 @@ Source book: *The LLM Engineer's Handbook* (Labonne & Iusztin, Packt 2024), 523 
     mobile; type-check clean. Self-critique fix: lowered pale-guard threshold so LangChain's label
     reads clearly.
 
+## Audit fixes — Phase 3 (trust) ✅ (comprehension-focused per owner)
+
+- **Interview answers verified against the book.** Cross-checked all **75** answers against the cited
+  page's clean text. **74 were accurate**; fixed **1** (`q11-megapipeline`) which asserted an
+  unverifiable reason ("ZenML 3-pipeline free-trial cap") → reworded to the page-supported reasoning.
+  Note: `q7-judge-bias` lists the book's canonical position/length/family biases (taught Ch5 p216 /
+  Ch6 p266); the Ch7 cited page also flags verbosity/consistency — substantively correct, kept.
+  Also noted: the book itself is inconsistent on the eval criteria (p305 "accuracy + style" vs p316
+  summary "relevance/coherence/conciseness") — each of our items/diagrams matches its own page.
+- Owner re-scoped Phase 3 to comprehension only: **copyright dropped per owner**; dev-hygiene items
+  (formal test runner, README) consciously deferred as they don't serve understanding the book.
+
 ## Audit fixes — Phase 2 (reader features) ✅ (core)
 
 - **Full-text search** — `Search.tsx` now scans the full `pages.clean.json` text (snippet + highlight,
